@@ -13,7 +13,8 @@
 ├── technical-domain.md        # Stack, architecture, technical decisions
 ├── business-tech-bridge.md    # How business needs map to solutions
 ├── decisions-log.md           # Major decisions with rationale
-└── living-notes.md            # Active issues, debt, open questions
+├── living-notes.md            # Active issues, debt, open questions
+└── meson-santa-rosa.md        # Mesón Santa Rosa hotel landing page project
 ```
 
 ## Quick Routes

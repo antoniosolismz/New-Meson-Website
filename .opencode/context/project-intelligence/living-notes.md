@@ -88,6 +88,20 @@
 |---------|------|-------|----------|
 | [Project] | [What we're doing] | [Who owns it] | [When it matters] |
 
+### Mesón Santa Rosa Hotel Website
+
+| Item | Status |
+|------|--------|
+| Design system implementation | ✅ Complete |
+| Hero + booking widgets | ✅ Complete |
+| All sections built | ✅ Complete |
+| Responsive mobile design | ✅ Complete |
+| Real photos needed | ❌ Pending |
+| Booking functionality | ❌ Pending |
+| Real Google Maps embed | ❌ Pending |
+| Real reviews integration | ❌ Pending |
+| SEO optimization | ❌ Pending |
+
 ## Archive (Resolved Items)
 
 Moved here for historical reference. Current team should refer to current notes above.
