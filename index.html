@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mesón Santa Rosa — Hotel Boutique en Tlaxcala, México</title>
+  <meta name="description" content="Mesón Santa Rosa, hotel boutique y restaurante ubicado en el corazón histórico de Tlaxcala. Disfruta habitaciones renovadas, desayunos gourmet y vistas al Patrimonio de la Humanidad." />
+
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS (JIT via CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'pink-meson':    '#E90065',
+            'brown-heading': '#4A3525',
+            'brown-body':    '#5C4A42',
+            'cream-bg':      '#FDFBF7',
+            'cream-hover':   '#F5EFE6',
+          },
+          fontFamily: {
+            serif:  ['"Playfair Display"', 'Georgia', 'serif'],
+            sans:   ['"Inter"', 'sans-serif'],
+          },
+          boxShadow: {
+            'elegant': '0 8px 32px rgba(74, 53, 37, 0.12)',
+            'card':    '0 4px 20px rgba(74, 53, 37, 0.08)',
+            'float':   '0 16px 48px rgba(74, 53, 37, 0.18)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ── Variables globales ── */
+    :root {
+      --pink:        #E90065;
+      --brown-h:     #4A3525;
+      --brown-b:     #5C4A42;
+      --cream:       #FDFBF7;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif !important;
+      background-color: var(--cream);
+      color: var(--brown-b);
+    }
+
+    /* ── Fuente Serif global ── */
+    .font-serif { font-family: 'Playfair Display', Georgia, serif !important; }
+
+    /* ── Scrollbar elegante ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: #d4a5a5; border-radius: 9999px; }
+
+    /* ── Header: transición al hacer scroll ── */
+    #main-header {
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+    #main-header.scrolled {
+      box-shadow: 0 2px 20px rgba(74, 53, 37, 0.12);
+    }
+
+    /* ── Hero: overlay gradiente cálido ── */
+    .hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(30, 15, 5, 0.45) 0%,
+        rgba(30, 15, 5, 0.25) 40%,
+        rgba(30, 15, 5, 0.55) 100%
+      );
+    }
+
+    /* ── Badge circular de reseña ── */
+    .review-badge-ring {
+      background: conic-gradient(
+        #E90065 0deg 338deg,
+        #f0e0e8 338deg 360deg
+      );
+      border-radius: 50%;
+      padding: 5px;
+    }
+    .review-badge-inner {
+      background: #fff;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Filigrana de fondo ── */
+    .filigree-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    .filigree-bg::before,
+    .filigree-bg::after {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23E90065' fill-opacity='0.06' d='M100 10 C60 10 30 40 30 80 C30 120 60 150 100 150 C140 150 170 120 170 80 C170 40 140 10 100 10Z M100 30 C75 30 55 50 55 75 C55 100 75 120 100 120 C125 120 145 100 145 75 C145 50 125 30 100 30Z M100 50 C87 50 77 60 77 73 C77 86 87 97 100 97 C113 97 123 86 123 73 C123 60 113 50 100 50Z'/%3E%3Cpath fill='%234A3525' fill-opacity='0.04' d='M10 100 Q30 70 50 100 Q70 130 90 100 Q110 70 130 100 Q150 130 170 100 Q190 70 200 80 L200 120 Q180 90 160 120 Q140 150 120 120 Q100 90 80 120 Q60 150 40 120 Q20 90 0 120 Z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .filigree-bg::before { top: -40px; left: -40px; transform: rotate(-15deg); }
+    .filigree-bg::after  { bottom: -40px; right: -40px; transform: rotate(165deg); }
+
+    /* ── Tarjetas hover ── */
+    .feature-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(74, 53, 37, 0.14) !important;
+    }
+
+    /* ── Botones principales ── */
+    .btn-pink {
+      background-color: #E90065;
+      color: #fff;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+    .btn-pink:hover {
+      background-color: #c70057;
+      transform: translateY(-1px);
+    }
+    .btn-pink:active { transform: translateY(0); }
+
+    /* ── Nav link activo ── */
+    .nav-link-active {
+      border-bottom: 2px solid #E90065;
+      padding-bottom: 2px;
+      color: #E90065 !important;
+    }
+
+    /* ── Animación fade-in al hacer scroll ── */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Galería: hover zoom ── */
+    .gallery-img-wrap { overflow: hidden; }
+    .gallery-img-wrap img {
+      transition: transform 0.45s ease;
+    }
+    .gallery-img-wrap:hover img { transform: scale(1.07); }
+
+    /* ── Icono amenidad ── */
+    .amenity-item i {
+      color: #E90065;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* ── Menú móvil ── */
+    #mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    #mobile-menu.open {
+      max-height: 400px;
+    }
+
+    /* ── Input del widget ── */
+    .booking-input {
+      border: 1px solid #e2d5c9;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      color: var(--brown-b);
+      background: #faf7f4;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .booking-input:focus {
+      outline: none;
+      border-color: #E90065;
+      box-shadow: 0 0 0 3px rgba(233, 0, 101, 0.1);
+    }
+
+    /* ── Sección separadora decorativa ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin: 12px 0 28px;
+    }
+    .section-divider span {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #E90065);
+    }
+    .section-divider span:last-child {
+      background: linear-gradient(to left, transparent, #E90065);
+    }
+    .section-divider i { color: #E90065; font-size: 0.75rem; }
+
+    /* ── Responsive: ocultar widgets flotantes en móvil ── */
+    @media (max-width: 1023px) {
+      .floating-booking { display: none !important; }
+      .floating-review  { display: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-cream-bg">
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  A. HEADER / NAVEGACIÓN                             ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-stone-100">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo -->
+        <a href="#inicio" class="flex-shrink-0" aria-label="Mesón Santa Rosa — Inicio">
+          <img
+            src="logo_meson_estampa.png"
+            alt="Logo Mesón Santa Rosa"
+            class="h-14 w-auto object-contain"
+            loading="eager"
+          />
+        </a>
+
+        <!-- Navegación desktop -->
+        <nav aria-label="Navegación principal" class="hidden lg:flex items-center gap-7">
+          <a href="#inicio"      class="nav-link-active text-sm font-medium tracking-wide font-sans">Inicio</a>
+          <a href="#habitaciones" class="text-brown-body hover:text-pink-meson text-sm font-medium tracking-wide transition-colors font-sans">Habitaciones</a>
+          <a href="#restaurante" class="text-brown-body hover:text-pink-meson text-sm font-medium tracking-wide transition-colors font-sans">Restaurante &amp; Bar</a>
+          <a href="#cafe"        class="text-brown-body hover:text-pink-meson text-sm font-medium tracking-wide transition-colors font-sans">Café</a>
+          <a href="#galeria"     class="text-brown-body hover:text-pink-meson text-sm font-medium tracking-wide transition-colors font-sans">Galería</a>
+          <a href="#contacto"    class="text-brown-body hover:text-pink-meson text-sm font-medium tracking-wide transition-colors font-sans">Contacto</a>
+        </nav>
+
+        <!-- CTA + Hamburguesa -->
+        <div class="flex items-center gap-3">
+          <a href="#reservar" class="btn-pink hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-semibold font-sans shadow-md">
+            <i class="fa-solid fa-calendar-check text-xs"></i>
+            Reservar Ahora
+          </a>
+          <!-- Botón hamburguesa móvil -->
+          <button id="menu-btn" aria-label="Abrir menú" aria-expanded="false" class="lg:hidden p-2 rounded-md text-brown-heading hover:bg-cream-hover transition-colors">
+            <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú móvil desplegable -->
+      <nav id="mobile-menu" aria-label="Menú móvil">
+        <div class="py-4 flex flex-col gap-1 border-t border-stone-100">
+          <a href="#inicio"       class="px-4 py-3 text-sm font-medium text-pink-meson font-sans rounded-lg">Inicio</a>
+          <a href="#habitaciones" class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Habitaciones</a>
+          <a href="#restaurante"  class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Restaurante &amp; Bar</a>
+          <a href="#cafe"         class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Café</a>
+          <a href="#galeria"      class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Galería</a>
+          <a href="#contacto"     class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Contacto</a>
+          <div class="px-4 pt-2">
+            <a href="#reservar" class="btn-pink w-full flex items-center justify-center gap-2 px-5 py-3 rounded-md text-sm font-semibold font-sans">
+              <i class="fa-solid fa-calendar-check text-xs"></i>
+              Reservar Ahora
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  B. HERO + WIDGETS FLOTANTES                        ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="inicio" class="relative w-full" style="min-height: 92vh;">
+
+    <!-- Imagen de fondo del hero -->
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1920&q=80"
+        alt="Patio colonial mexicano con arcos de piedra y fuente central"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+      <div class="hero-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Contenido central del Hero -->
+    <div class="relative z-10 flex flex-col items-center justify-center text-center px-4 pt-44 pb-40" style="min-height: 92vh;">
+      <div class="fade-in-up visible">
+        <!-- Etiqueta decorativa -->
+        <span class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-xs font-medium font-sans tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
+          <i class="fa-solid fa-star text-yellow-300 text-xs"></i>
+          Hotel Boutique · Tlaxcala, México
+        </span>
+
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4" style="text-shadow: 0 2px 20px rgba(0,0,0,0.4);">
+          Experiencia en<br/>
+          <span class="italic text-rose-200">Elegancia Colonial</span>
+        </h1>
+
+        <p class="font-sans text-lg sm:text-xl text-white/90 font-light max-w-xl mx-auto mb-10" style="text-shadow: 0 1px 8px rgba(0,0,0,0.3);">
+          Un retiro boutique en el corazón histórico de Tlaxcala, frente al Ex Convento de San Francisco, Patrimonio de la Humanidad UNESCO
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#reservar" class="btn-pink inline-flex items-center gap-2 px-8 py-4 rounded-md text-base font-semibold font-sans shadow-lg">
+            <i class="fa-solid fa-calendar-check"></i>
+            Verificar Disponibilidad
+          </a>
+          <a href="#bienvenida" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/40 text-white px-8 py-4 rounded-md text-base font-medium font-sans hover:bg-white/25 transition-colors">
+            <i class="fa-solid fa-circle-play"></i>
+            Conocer más
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Widget Flotante: RESERVA (Superior Izquierdo) ── -->
+    <div class="floating-booking absolute top-28 left-6 xl:left-12 z-20 bg-white rounded-2xl shadow-float p-5"
+         style="box-shadow: 0 20px 60px rgba(30,15,5,0.22); width: 560px; max-width: calc(100vw - 3rem);">
+
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background:#fde8f1;">
+          <i class="fa-solid fa-magnifying-glass text-sm" style="color:#E90065;"></i>
+        </div>
+        <h3 class="font-serif text-base font-semibold text-brown-heading">Encuentra tu Escape</h3>
+      </div>
+
+      <!-- Horizontal row: 3 inputs + button -->
+      <div class="flex items-end gap-2">
+        <!-- Check-In -->
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-medium text-brown-body mb-1.5 font-sans">
+            <i class="fa-regular fa-calendar mr-1" style="color:#E90065;"></i>Check-In
+          </label>
+          <input type="date" class="booking-input" aria-label="Fecha de llegada" />
+        </div>
+
+        <!-- Check-Out -->
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-medium text-brown-body mb-1.5 font-sans">
+            <i class="fa-regular fa-calendar mr-1" style="color:#E90065;"></i>Check-Out
+          </label>
+          <input type="date" class="booking-input" aria-label="Fecha de salida" />
+        </div>
+
+        <!-- Huéspedes -->
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-medium text-brown-body mb-1.5 font-sans">
+            <i class="fa-solid fa-user-group mr-1" style="color:#E90065;"></i>Huéspedes
+          </label>
+          <select class="booking-input" aria-label="Número de huéspedes">
+            <option>1 huésped</option>
+            <option selected>2 huéspedes</option>
+            <option>3 huéspedes</option>
+            <option>4 huéspedes</option>
+            <option>5+ huéspedes</option>
+          </select>
+        </div>
+
+        <!-- CTA button aligned to bottom of row -->
+        <button class="btn-pink flex-shrink-0 py-2.5 px-4 rounded-lg text-xs font-semibold font-sans flex items-center gap-1.5" style="padding-top:9px; padding-bottom:9px;">
+          <i class="fa-solid fa-search text-xs"></i>
+          Verificar
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Widget Flotante: BADGE DE RESEÑA (Inferior Derecho) ── -->
+    <div class="floating-review absolute -bottom-14 right-8 xl:right-16 z-20"
+         style="width: 148px; height: 148px;">
+      <div class="review-badge-ring w-full h-full"
+           style="box-shadow: 0 12px 40px rgba(233,0,101,0.25);">
+        <div class="review-badge-inner">
+          <span class="font-serif font-bold leading-none" style="font-size:1.75rem; color:#E90065;">9.4</span>
+          <span class="font-sans text-xs font-semibold" style="color:#4A3525; margin-top:2px;">/10</span>
+          <span class="font-sans text-center leading-tight" style="font-size:0.6rem; color:#4A3525; font-weight:600; margin-top:4px; letter-spacing:0.02em;">Excepcional</span>
+          <span class="font-sans" style="font-size:0.55rem; color:#5C4A42; margin-top:2px;">• 248 Reseñas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de scroll -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 animate-bounce">
+      <span class="text-white/60 text-xs font-sans">Explorar</span>
+      <i class="fa-solid fa-chevron-down text-white/60 text-sm"></i>
+    </div>
+  </section>
+
+
+  <!-- ── Bloque de reserva móvil (visible solo en pantallas < lg) ── -->
+  <section id="reservar" class="bg-white border-y border-stone-100 py-8 px-4 lg:hidden">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-serif text-xl font-semibold text-brown-heading text-center mb-5">
+        <i class="fa-solid fa-magnifying-glass mr-2" style="color:#E90065;"></i>
+        Verificar Disponibilidad
+      </h2>
+      <!-- Stack on mobile, row on sm+ -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-3">
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-medium text-brown-body mb-1.5 font-sans">
+            <i class="fa-regular fa-calendar mr-1" style="color:#E90065;"></i>Check-In
+          </label>
+          <input type="date" class="booking-input" aria-label="Fecha de llegada" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-medium text-brown-body mb-1.5 font-sans">
+            <i class="fa-regular fa-calendar mr-1" style="color:#E90065;"></i>Check-Out
+          </label>
+          <input type="date" class="booking-input" aria-label="Fecha de salida" />
+        </div>
+        <div class="flex-1 min-w-0">
+          <label class="block text-xs font-medium text-brown-body mb-1.5 font-sans">
+            <i class="fa-solid fa-user-group mr-1" style="color:#E90065;"></i>Huéspedes
+          </label>
+          <select class="booking-input" aria-label="Número de huéspedes">
+            <option>1 huésped</option>
+            <option selected>2 huéspedes</option>
+            <option>3 huéspedes</option>
+            <option>4 huéspedes</option>
+          </select>
+        </div>
+        <div class="flex-shrink-0">
+          <button class="btn-pink w-full sm:w-auto py-3 px-5 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+            <i class="fa-solid fa-search text-xs"></i>
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  C. BIENVENIDA + TARJETAS DE CARACTERÍSTICAS        ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="bienvenida" class="filigree-bg py-24 px-4" style="background-color:#FDFBF7; padding-top: 6rem;">
+    <div class="container mx-auto max-w-6xl relative z-10">
+
+      <!-- Encabezado de sección -->
+      <div class="text-center mb-16 fade-in-up">
+        <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+          Nuestro Hotel
+        </span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading leading-tight mb-4">
+          Bienvenido al Mesón<br class="hidden sm:block"/>Santa Rosa
+        </h2>
+
+        <div class="section-divider">
+          <span></span>
+          <i class="fa-solid fa-spa"></i>
+          <span></span>
+        </div>
+
+        <p class="font-sans text-base md:text-lg text-brown-body leading-relaxed max-w-2xl mx-auto">
+          Ubicado en el corazón histórico de Tlaxcala, nuestro mesón boutique combina la calidez de la hospitalidad mexicana con el encanto arquitectónico colonial. Un refugio íntimo y familiar, a pasos del Ex Convento de San Francisco, declarado <strong>Patrimonio Cultural de la Humanidad por la UNESCO</strong>.
+        </p>
+      </div>
+
+      <!-- ── Tres tarjetas de características ── -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Tarjeta 1: Desayunos -->
+        <article class="feature-card bg-white rounded-2xl shadow-card overflow-hidden border border-stone-100 fade-in-up">
+          <!-- Icono superior -->
+          <div class="p-6 pb-0">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4" style="background:#fde8f1;">
+              <i class="fa-solid fa-plate-wheat text-xl" style="color:#E90065;"></i>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-brown-heading mb-1">
+              Desayunos Preparados al Momento
+            </h3>
+          </div>
+
+          <!-- Imagen del desayuno -->
+          <div class="gallery-img-wrap mx-6 my-4 rounded-xl overflow-hidden" style="height:180px;">
+            <img
+              src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80"
+              alt="Desayuno mexicano auténtico con huevos y tortillas"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="px-6 pb-6">
+            <p class="font-sans text-sm text-brown-body leading-relaxed mb-4">
+              Saborea un delicioso desayuno auténtico tlaxcalteca, preparado cada mañana con los ingredientes más frescos. Desde enchiladas y chilaquiles hasta hotcakes y tartas gourmet.
+            </p>
+            <a href="#restaurante" class="inline-flex items-center gap-1.5 text-sm font-semibold font-sans" style="color:#E90065;">
+              Ver menú <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Tarjeta 2: Amenidades -->
+        <article class="feature-card bg-white rounded-2xl shadow-card overflow-hidden border border-stone-100 fade-in-up" style="transition-delay:0.1s;">
+          <div class="p-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4" style="background:#fde8f1;">
+              <i class="fa-solid fa-bell-concierge text-xl" style="color:#E90065;"></i>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-brown-heading mb-4">
+              Amplias Comodidades
+            </h3>
+
+            <!-- Mini grid de amenidades -->
+            <div class="grid grid-cols-3 gap-3 mb-5">
+              <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl" style="background:#faf7f4;">
+                <i class="fa-solid fa-wifi text-lg" style="color:#E90065;"></i>
+                <span class="text-xs font-medium text-brown-body text-center font-sans leading-tight">WiFi<br/>Gratis</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl" style="background:#faf7f4;">
+                <i class="fa-solid fa-bed text-lg" style="color:#E90065;"></i>
+                <span class="text-xs font-medium text-brown-body text-center font-sans leading-tight">Ropa de<br/>Cama Premium</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl" style="background:#faf7f4;">
+                <i class="fa-solid fa-broom text-lg" style="color:#E90065;"></i>
+                <span class="text-xs font-medium text-brown-body text-center font-sans leading-tight">Limpieza<br/>Diaria</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl" style="background:#faf7f4;">
+                <i class="fa-solid fa-language text-lg" style="color:#E90065;"></i>
+                <span class="text-xs font-medium text-brown-body text-center font-sans leading-tight">Personal<br/>Multilingüe</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl" style="background:#faf7f4;">
+                <i class="fa-solid fa-mug-hot text-lg" style="color:#E90065;"></i>
+                <span class="text-xs font-medium text-brown-body text-center font-sans leading-tight">Café &<br/>Terraza</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl" style="background:#faf7f4;">
+                <i class="fa-solid fa-star text-lg" style="color:#E90065;"></i>
+                <span class="text-xs font-medium text-brown-body text-center font-sans leading-tight">Vistas<br/>UNESCO</span>
+              </div>
+            </div>
+
+            <p class="font-sans text-sm text-brown-body leading-relaxed">
+              Habitaciones recién renovadas con todas las comodidades para hacer de tu estadía en Tlaxcala una experiencia verdaderamente memorable.
+            </p>
+          </div>
+        </article>
+
+        <!-- Tarjeta 3: Explorar Tlaxcala -->
+        <article class="feature-card bg-white rounded-2xl shadow-card overflow-hidden border border-stone-100 fade-in-up" style="transition-delay:0.2s;">
+          <div class="p-6 pb-0">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4" style="background:#fde8f1;">
+              <i class="fa-solid fa-map-location-dot text-xl" style="color:#E90065;"></i>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-brown-heading mb-1">
+              Explora Tlaxcala
+            </h3>
+          </div>
+
+          <!-- Imagen de sitio histórico -->
+          <div class="gallery-img-wrap mx-6 my-4 rounded-xl overflow-hidden" style="height:180px;">
+            <img
+              src="https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=600&q=80"
+              alt="Iglesia colonial en Tlaxcala, México"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="px-6 pb-6">
+            <p class="font-sans text-sm text-brown-body leading-relaxed mb-4">
+              Descubre sitios históricos a unos pasos de nuestras puertas. La Catedral, el Museo Miguel N. Lira y el Ex Convento Patrimonio de la Humanidad son solo el comienzo de tu aventura tlaxcalteca.
+            </p>
+            <a href="#contacto" class="inline-flex items-center gap-1.5 text-sm font-semibold font-sans" style="color:#E90065;">
+              Ver ubicación <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /grid tarjetas -->
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  D. HABITACIONES                                    ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="habitaciones" class="py-24 px-4 bg-white">
+    <div class="container mx-auto max-w-6xl">
+
+      <div class="text-center mb-14 fade-in-up">
+        <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+          Nuestros Espacios
+        </span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading mb-4">
+          Habitaciones Renovadas
+        </h2>
+        <div class="section-divider">
+          <span></span>
+          <i class="fa-solid fa-moon"></i>
+          <span></span>
+        </div>
+        <p class="font-sans text-base text-brown-body max-w-xl mx-auto">
+          Cada habitación ha sido cuidadosamente renovada para ofrecerte el máximo confort, con vistas privilegiadas a la torre del Ex Convento de San Francisco.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in-up">
+
+        <!-- Habitación Estándar -->
+        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card">
+          <div class="gallery-img-wrap" style="height:260px;">
+            <img
+              src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80"
+              alt="Habitación estándar del Mesón Santa Rosa"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-brown-heading">Habitación Estándar</h3>
+              <div class="text-right">
+                <span class="text-xs text-brown-body font-sans">desde</span>
+                <p class="font-serif text-2xl font-bold" style="color:#E90065;">$55 <span class="text-sm font-normal text-brown-body font-sans">USD/noche</span></p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-wifi text-xs" style="color:#E90065;"></i> WiFi gratis
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-tv text-xs" style="color:#E90065;"></i> TV cable
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-snowflake text-xs" style="color:#E90065;"></i> Clima
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-eye text-xs" style="color:#E90065;"></i> Vista al convento
+              </span>
+            </div>
+            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+              <i class="fa-solid fa-calendar-check text-xs"></i>
+              Reservar esta habitación
+            </a>
+          </div>
+        </div>
+
+        <!-- Habitación Doble -->
+        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card">
+          <div class="gallery-img-wrap" style="height:260px;">
+            <img
+              src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80"
+              alt="Habitación doble del Mesón Santa Rosa"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-brown-heading">Habitación Doble</h3>
+              <div class="text-right">
+                <span class="text-xs text-brown-body font-sans">desde</span>
+                <p class="font-serif text-2xl font-bold" style="color:#E90065;">$70 <span class="text-sm font-normal text-brown-body font-sans">USD/noche</span></p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-wifi text-xs" style="color:#E90065;"></i> WiFi gratis
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-bed text-xs" style="color:#E90065;"></i> 2 camas
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-bath text-xs" style="color:#E90065;"></i> Baño privado
+              </span>
+              <span class="inline-flex items-center gap-1 text-xs font-sans px-2.5 py-1 rounded-full bg-stone-100 text-brown-body">
+                <i class="fa-solid fa-eye text-xs" style="color:#E90065;"></i> Vista al convento
+              </span>
+            </div>
+            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+              <i class="fa-solid fa-calendar-check text-xs"></i>
+              Reservar esta habitación
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /grid habitaciones -->
+
+      <!-- Booking externo -->
+      <div class="mt-10 text-center fade-in-up">
+        <p class="font-sans text-sm text-brown-body mb-4">También disponibles en plataformas externas:</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="https://www.expedia.com/Tlaxcala-Hotels-Meson-Santa-Rosa.h78660800.Hotel-Information"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 border border-stone-200 text-brown-body text-sm font-medium font-sans px-5 py-2.5 rounded-lg hover:border-pink-meson hover:text-pink-meson transition-colors">
+            <i class="fa-solid fa-external-link text-xs"></i> Expedia
+          </a>
+          <a href="https://es.hoteles.com/ho2518145600/meson-santa-rosa-tlaxcala-mexico"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 border border-stone-200 text-brown-body text-sm font-medium font-sans px-5 py-2.5 rounded-lg hover:border-pink-meson hover:text-pink-meson transition-colors">
+            <i class="fa-solid fa-external-link text-xs"></i> Hotels.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  E. RESTAURANTE & BAR                               ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="restaurante" class="filigree-bg py-24 px-4" style="background-color:#FDFBF7;">
+    <div class="container mx-auto max-w-6xl relative z-10">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Texto -->
+        <div class="fade-in-up">
+          <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+            Gastronomía
+          </span>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading leading-tight mb-4">
+            Restaurante &<br/>Bar Mesón
+          </h2>
+          <div class="section-divider justify-start">
+            <span class="w-12"></span>
+            <i class="fa-solid fa-utensils"></i>
+            <span></span>
+          </div>
+          <p class="font-sans text-base text-brown-body leading-relaxed mb-6">
+            Nuestra cocina es el alma del mesón. Disfruta de desayunos y almuerzos preparados al momento con los ingredientes más frescos, bajo los más altos estándares de calidad e higiene. La auténtica gastronomía tlaxcalteca en cada platillo.
+          </p>
+
+          <div class="space-y-3 mb-8">
+            <div class="amenity-item flex items-center gap-3">
+              <i class="fa-solid fa-clock"></i>
+              <span class="font-sans text-sm text-brown-body">Servicio de 8:00 am a 3:00 pm, todos los días</span>
+            </div>
+            <div class="amenity-item flex items-center gap-3">
+              <i class="fa-solid fa-leaf"></i>
+              <span class="font-sans text-sm text-brown-body">Ingredientes frescos, recetas tradicionales</span>
+            </div>
+            <div class="amenity-item flex items-center gap-3">
+              <i class="fa-solid fa-users"></i>
+              <span class="font-sans text-sm text-brown-body">Disponible para huéspedes y clientes externos</span>
+            </div>
+            <div class="amenity-item flex items-center gap-3">
+              <i class="fa-solid fa-star"></i>
+              <span class="font-sans text-sm text-brown-body">Especialidad: enchiladas, hotcakes y chilaquiles</span>
+            </div>
+          </div>
+
+          <a href="https://santarosameson.com/alimentos.html" target="_blank"
+             class="btn-pink inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-sm font-semibold font-sans shadow-md">
+            <i class="fa-solid fa-book-open"></i>
+            Ver Menú Completo
+          </a>
+        </div>
+
+        <!-- Galería de alimentos 2×2 -->
+        <div class="grid grid-cols-2 gap-4 fade-in-up">
+          <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
+            <img
+              src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=500&q=80"
+              alt="Enchiladas tlaxcaltecas"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
+            <img
+              src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=80"
+              alt="Desayuno gourmet con hotcakes"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
+            <img
+              src="https://images.unsplash.com/photo-1484723091739-30990be9b069?auto=format&fit=crop&w=500&q=80"
+              alt="Chilaquiles y café mexicano"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
+            <img
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80"
+              alt="Café artesanal del Mesón"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  F. CAFÉ                                            ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="cafe" class="py-24 px-4 bg-white">
+    <div class="container mx-auto max-w-6xl">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Imagen del café -->
+        <div class="order-2 lg:order-1 fade-in-up">
+          <div class="relative">
+            <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-float" style="height:440px;">
+              <img
+                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80"
+                alt="Ambiente acogedor del café del Mesón Santa Rosa"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <!-- Badge decorativo -->
+            <div class="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-elegant p-5 border border-stone-100">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:#fde8f1;">
+                  <i class="fa-solid fa-mug-hot" style="color:#E90065;"></i>
+                </div>
+                <div>
+                  <p class="font-serif font-semibold text-brown-heading text-sm">Café Artesanal</p>
+                  <p class="font-sans text-xs text-brown-body">Todos los días</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div class="order-1 lg:order-2 fade-in-up">
+          <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+            Nuestro Café
+          </span>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading leading-tight mb-4">
+            El Rincón del<br/>Café
+          </h2>
+          <div class="section-divider justify-start">
+            <span class="w-12"></span>
+            <i class="fa-solid fa-mug-hot"></i>
+            <span></span>
+          </div>
+          <p class="font-sans text-base text-brown-body leading-relaxed mb-6">
+            Comienza tu mañana con el aroma del café recién preparado en nuestra terraza, con vistas únicas a la majestuosa Torre del Ex Convento de San Francisco. Un espacio ideal para relajarte, trabajar o simplemente disfrutar del ambiente colonial de Tlaxcala.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="p-4 rounded-xl border border-stone-100" style="background:#faf7f4;">
+              <i class="fa-solid fa-coffee-bean mb-2 block" style="color:#E90065; font-size:1.25rem;"></i>
+              <h4 class="font-serif font-semibold text-brown-heading text-sm mb-1">Café de Origen</h4>
+              <p class="font-sans text-xs text-brown-body">Granos seleccionados mexicanos</p>
+            </div>
+            <div class="p-4 rounded-xl border border-stone-100" style="background:#faf7f4;">
+              <i class="fa-solid fa-sun mb-2 block" style="color:#E90065; font-size:1.25rem;"></i>
+              <h4 class="font-serif font-semibold text-brown-heading text-sm mb-1">Terraza con Vista</h4>
+              <p class="font-sans text-xs text-brown-body">Vista al Patrimonio UNESCO</p>
+            </div>
+            <div class="p-4 rounded-xl border border-stone-100" style="background:#faf7f4;">
+              <i class="fa-solid fa-bread-slice mb-2 block" style="color:#E90065; font-size:1.25rem;"></i>
+              <h4 class="font-serif font-semibold text-brown-heading text-sm mb-1">Panificación</h4>
+              <p class="font-sans text-xs text-brown-body">Pan artesanal y tartas del día</p>
+            </div>
+            <div class="p-4 rounded-xl border border-stone-100" style="background:#faf7f4;">
+              <i class="fa-solid fa-wifi mb-2 block" style="color:#E90065; font-size:1.25rem;"></i>
+              <h4 class="font-serif font-semibold text-brown-heading text-sm mb-1">WiFi de Alta Velocidad</h4>
+              <p class="font-sans text-xs text-brown-body">Espacio ideal para trabajar</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  G. GALERÍA                                         ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="galeria" class="py-24 px-4" style="background-color:#FDFBF7;">
+    <div class="container mx-auto max-w-6xl">
+
+      <div class="text-center mb-14 fade-in-up">
+        <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+          Imágenes
+        </span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading mb-4">
+          Galería del Mesón
+        </h2>
+        <div class="section-divider">
+          <span></span>
+          <i class="fa-solid fa-camera-retro"></i>
+          <span></span>
+        </div>
+        <p class="font-sans text-base text-brown-body max-w-lg mx-auto">
+          Descubre los rincones más bellos de nuestro mesón boutique a través de estas imágenes.
+        </p>
+      </div>
+
+      <!-- Grid de galería asimétrico -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 fade-in-up">
+
+        <!-- Grande: fila 1, columna 1-2 -->
+        <div class="gallery-img-wrap col-span-2 rounded-2xl overflow-hidden shadow-card" style="height:280px;">
+          <img
+            src="https://images.unsplash.com/photo-1596395819057-cb378328c6e2?auto=format&fit=crop&w=1000&q=80"
+            alt="Patio colonial con arcos de piedra"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:280px;">
+          <img
+            src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=500&q=80"
+            alt="Habitación del hotel Mesón Santa Rosa"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:280px;">
+          <img
+            src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=500&q=80"
+            alt="Desayuno en el Mesón Santa Rosa"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:220px;">
+          <img
+            src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=500&q=80"
+            alt="Platillo del restaurante Mesón"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:220px;">
+          <img
+            src="https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=500&q=80"
+            alt="Vista al centro histórico de Tlaxcala"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Grande: fila 2, columna 3-4 -->
+        <div class="gallery-img-wrap col-span-2 rounded-2xl overflow-hidden shadow-card" style="height:220px;">
+          <img
+            src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1000&q=80"
+            alt="Terraza y jardín del Mesón Santa Rosa"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+
+      <div class="text-center mt-10 fade-in-up">
+        <a href="https://www.instagram.com/santarosameson/" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 border-2 border-pink-meson text-pink-meson px-7 py-3.5 rounded-md text-sm font-semibold font-sans hover:bg-pink-meson hover:text-white transition-all">
+          <i class="fa-brands fa-instagram"></i>
+          Ver más en Instagram
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  H. RESEÑAS                                         ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section class="py-24 px-4 bg-white">
+    <div class="container mx-auto max-w-6xl">
+
+      <div class="text-center mb-14 fade-in-up">
+        <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+          Nuestros Huéspedes
+        </span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading mb-4">
+          Lo que Dicen de Nosotros
+        </h2>
+        <div class="section-divider">
+          <span></span>
+          <i class="fa-solid fa-heart"></i>
+          <span></span>
+        </div>
+        <!-- Calificación general -->
+        <div class="inline-flex items-center gap-3 bg-cream-bg px-6 py-3 rounded-full border border-stone-100 mt-2">
+          <span class="font-serif text-3xl font-bold" style="color:#E90065;">9.4</span>
+          <div class="text-left">
+            <div class="flex items-center gap-0.5 mb-0.5">
+              <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+              <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+              <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+              <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+              <i class="fa-solid fa-star-half-stroke text-yellow-400 text-sm"></i>
+            </div>
+            <span class="font-sans text-xs text-brown-body">Excepcional · 248 reseñas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 fade-in-up">
+
+        <!-- Reseña 1 -->
+        <div class="feature-card bg-cream-bg rounded-2xl p-6 border border-stone-100">
+          <div class="flex items-center gap-0.5 mb-3">
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+          </div>
+          <p class="font-sans text-sm text-brown-body leading-relaxed mb-4 italic">
+            "Los cuartos eran bastante cómodos, con vistas preciosas al convento. El desayuno era excelente, todo preparado al momento. El personal fue muy amable y atento."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold text-white" style="background:#E90065;">A</div>
+            <div>
+              <p class="font-sans font-semibold text-brown-heading text-sm">Ana García</p>
+              <p class="font-sans text-xs text-brown-body">Tlaxcala, México</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reseña 2 -->
+        <div class="feature-card bg-cream-bg rounded-2xl p-6 border border-stone-100" style="transition-delay:0.1s;">
+          <div class="flex items-center gap-0.5 mb-3">
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+          </div>
+          <p class="font-sans text-sm text-brown-body leading-relaxed mb-4 italic">
+            "Lugar excepcional para hospedarse en Tlaxcala. La ubicación es perfecta: a pasos del centro histórico. Los desayunos son los mejores que he probado en la región."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold text-white" style="background:#E90065;">C</div>
+            <div>
+              <p class="font-sans font-semibold text-brown-heading text-sm">Carlos Mendoza</p>
+              <p class="font-sans text-xs text-brown-body">Ciudad de México</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reseña 3 -->
+        <div class="feature-card bg-cream-bg rounded-2xl p-6 border border-stone-100" style="transition-delay:0.2s;">
+          <div class="flex items-center gap-0.5 mb-3">
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+            <i class="fa-solid fa-star-half-stroke text-yellow-400 text-sm"></i>
+          </div>
+          <p class="font-sans text-sm text-brown-body leading-relaxed mb-4 italic">
+            "Un hotel boutique con mucho carácter. La limpieza es impecable y las vistas al convento son únicas. Sin duda regresaré en mi próxima visita a Tlaxcala."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold text-white" style="background:#E90065;">M</div>
+            <div>
+              <p class="font-sans font-semibold text-brown-heading text-sm">María Rodríguez</p>
+              <p class="font-sans text-xs text-brown-body">Puebla, México</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  I. CONTACTO & UBICACIÓN                           ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section id="contacto" class="filigree-bg py-24 px-4" style="background-color:#FDFBF7;">
+    <div class="container mx-auto max-w-6xl relative z-10">
+
+      <div class="text-center mb-14 fade-in-up">
+        <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-3" style="color:#E90065;">
+          Encuéntranos
+        </span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading mb-4">
+          Contacto y Ubicación
+        </h2>
+        <div class="section-divider">
+          <span></span>
+          <i class="fa-solid fa-location-dot"></i>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+        <!-- Info de contacto -->
+        <div class="space-y-6 fade-in-up">
+
+          <!-- Dirección -->
+          <div class="flex items-start gap-4 bg-white p-5 rounded-2xl shadow-card border border-stone-100">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:#fde8f1;">
+              <i class="fa-solid fa-location-dot" style="color:#E90065;"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-brown-heading mb-1">Dirección</h4>
+              <p class="font-sans text-sm text-brown-body leading-relaxed">
+                Av. Independencia 27, Centro<br/>
+                90000 Tlaxcala de Xicohténcatl, Tlax.<br/>
+                México
+              </p>
+              <a href="https://goo.gl/maps/i7gz84NQZufiXKhn8" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1.5 mt-2 text-sm font-semibold font-sans" style="color:#E90065;">
+                Ver en Google Maps <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Teléfonos -->
+          <div class="flex items-start gap-4 bg-white p-5 rounded-2xl shadow-card border border-stone-100">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:#fde8f1;">
+              <i class="fa-solid fa-phone" style="color:#E90065;"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-brown-heading mb-2">Reservaciones por teléfono</h4>
+              <a href="tel:2464665352" class="block font-sans text-sm font-medium text-brown-body hover:text-pink-meson transition-colors mb-1">
+                <i class="fa-solid fa-phone-volume mr-2 text-xs" style="color:#E90065;"></i>
+                +52 246 466 5352
+              </a>
+              <a href="tel:2463285953" class="block font-sans text-sm font-medium text-brown-body hover:text-pink-meson transition-colors">
+                <i class="fa-solid fa-phone-volume mr-2 text-xs" style="color:#E90065;"></i>
+                +52 246 328 5953
+              </a>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-start gap-4 bg-white p-5 rounded-2xl shadow-card border border-stone-100">
+            <div class="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center" style="background:#fde8f1;">
+              <i class="fa-solid fa-envelope" style="color:#E90065;"></i>
+            </div>
+            <div>
+              <h4 class="font-serif font-semibold text-brown-heading mb-1">Correo electrónico</h4>
+              <a href="mailto:contacto@santarosameson.com"
+                 class="font-sans text-sm text-brown-body hover:text-pink-meson transition-colors">
+                contacto@santarosameson.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Redes sociales -->
+          <div class="flex items-center gap-4 pt-2">
+            <a href="https://www.facebook.com/pages/category/Coffee-shop/Mes%C3%B3n-Santa-Rosa-103983024338527/"
+               target="_blank" rel="noopener noreferrer" aria-label="Facebook del Mesón Santa Rosa"
+               class="w-11 h-11 rounded-xl flex items-center justify-center bg-white border border-stone-100 shadow-card hover:border-pink-meson transition-colors">
+              <i class="fa-brands fa-facebook-f" style="color:#E90065;"></i>
+            </a>
+            <a href="https://www.instagram.com/santarosameson/"
+               target="_blank" rel="noopener noreferrer" aria-label="Instagram del Mesón Santa Rosa"
+               class="w-11 h-11 rounded-xl flex items-center justify-center bg-white border border-stone-100 shadow-card hover:border-pink-meson transition-colors">
+              <i class="fa-brands fa-instagram" style="color:#E90065;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mapa embed -->
+        <div class="fade-in-up">
+          <div class="rounded-2xl overflow-hidden shadow-float border border-stone-100" style="height:420px;">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.4!2d-98.2389!3d19.3140!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cff1c6dbf77bb7%3A0x9e9e9e9e9e9e9e9e!2sAv.+Independencia+27%2C+Centro%2C+90000+Tlaxcala+de+Xicohténcatl!5e0!3m2!1ses!2smx!4v1"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              title="Ubicación del Mesón Santa Rosa en Tlaxcala"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  J. CTA FINAL                                       ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <section class="relative py-24 px-4 overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=1920&q=80"
+        alt="Vista nocturna del hotel boutique"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(30,10,5,0.82) 0%, rgba(73,35,20,0.75) 100%);"></div>
+    </div>
+
+    <div class="relative z-10 text-center max-w-2xl mx-auto fade-in-up">
+      <span class="inline-block text-xs font-semibold font-sans tracking-widest uppercase mb-4 text-rose-200">
+        Tu escapada perfecta
+      </span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold text-white leading-tight mb-5">
+        ¿Listo para Vivir la Experiencia Mesón Santa Rosa?
+      </h2>
+      <p class="font-sans text-base text-white/80 leading-relaxed mb-8">
+        Reserva directamente con nosotros y obtén la mejor tarifa garantizada. Nuestro equipo está listo para hacer de tu estadía algo verdaderamente inolvidable.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="tel:2464665352"
+           class="btn-pink inline-flex items-center gap-2 px-8 py-4 rounded-md text-base font-semibold font-sans shadow-lg">
+          <i class="fa-solid fa-phone"></i>
+          Llamar Ahora
+        </a>
+        <a href="https://es.hoteles.com/ho2518145600/meson-santa-rosa-tlaxcala-mexico"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/40 text-white px-8 py-4 rounded-md text-base font-medium font-sans hover:bg-white/25 transition-colors">
+          <i class="fa-solid fa-globe"></i>
+          Reservar en Línea
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  K. FOOTER                                          ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <footer class="bg-brown-heading text-white pt-16 pb-8 px-4">
+    <div class="container mx-auto max-w-6xl">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+        <!-- Logo y descripción -->
+        <div class="lg:col-span-2">
+          <img
+            src="logo_meson_estampa.png"
+            alt="Logo Mesón Santa Rosa"
+            class="h-16 w-auto object-contain mb-4 brightness-0 invert opacity-90"
+            loading="lazy"
+          />
+          <p class="font-sans text-sm text-white/70 leading-relaxed max-w-xs mb-5">
+            Hotel boutique y restaurante en el corazón histórico de Tlaxcala, México. Hospitalidad auténtica frente al Patrimonio Cultural de la Humanidad UNESCO.
+          </p>
+          <div class="flex items-center gap-3">
+            <a href="https://www.facebook.com/pages/category/Coffee-shop/Mes%C3%B3n-Santa-Rosa-103983024338527/"
+               target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+               class="w-9 h-9 rounded-lg flex items-center justify-center bg-white/10 hover:bg-pink-meson transition-colors">
+              <i class="fa-brands fa-facebook-f text-sm"></i>
+            </a>
+            <a href="https://www.instagram.com/santarosameson/"
+               target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+               class="w-9 h-9 rounded-lg flex items-center justify-center bg-white/10 hover:bg-pink-meson transition-colors">
+              <i class="fa-brands fa-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navegación -->
+        <div>
+          <h5 class="font-serif font-semibold text-white mb-4">Navegación</h5>
+          <ul class="space-y-2.5">
+            <li><a href="#inicio"       class="font-sans text-sm text-white/70 hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="#habitaciones" class="font-sans text-sm text-white/70 hover:text-white transition-colors">Habitaciones</a></li>
+            <li><a href="#restaurante"  class="font-sans text-sm text-white/70 hover:text-white transition-colors">Restaurante</a></li>
+            <li><a href="#cafe"         class="font-sans text-sm text-white/70 hover:text-white transition-colors">Café</a></li>
+            <li><a href="#galeria"      class="font-sans text-sm text-white/70 hover:text-white transition-colors">Galería</a></li>
+            <li><a href="#contacto"     class="font-sans text-sm text-white/70 hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacto rápido -->
+        <div>
+          <h5 class="font-serif font-semibold text-white mb-4">Contacto</h5>
+          <div class="space-y-3">
+            <div class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-xs mt-1 flex-shrink-0" style="color:#E90065;"></i>
+              <span class="font-sans text-sm text-white/70 leading-relaxed">
+                Av. Independencia 27, Centro<br/>Tlaxcala, México
+              </span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i class="fa-solid fa-phone text-xs flex-shrink-0" style="color:#E90065;"></i>
+              <a href="tel:2464665352" class="font-sans text-sm text-white/70 hover:text-white transition-colors">
+                +52 246 466 5352
+              </a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i class="fa-solid fa-phone text-xs flex-shrink-0" style="color:#E90065;"></i>
+              <a href="tel:2463285953" class="font-sans text-sm text-white/70 hover:text-white transition-colors">
+                +52 246 328 5953
+              </a>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <i class="fa-solid fa-envelope text-xs flex-shrink-0" style="color:#E90065;"></i>
+              <a href="mailto:contacto@santarosameson.com" class="font-sans text-sm text-white/70 hover:text-white transition-colors">
+                contacto@santarosameson.com
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Línea divisoria y copyright -->
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-sans text-xs text-white/50">
+          &copy; 2026 Mesón Santa Rosa. Todos los derechos reservados.
+        </p>
+        <p class="font-sans text-xs text-white/50">
+          Tlaxcala de Xicohténcatl, Tlaxcala, México
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  JAVASCRIPT                                         ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <script>
+    // ── Header scrolled state ──
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // ── Menú móvil ──
+    const menuBtn  = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuIcon.className = isOpen
+        ? 'fa-solid fa-xmark text-xl'
+        : 'fa-solid fa-bars text-xl';
+    });
+
+    // Cerrar menú al hacer click en un enlace
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuIcon.className = 'fa-solid fa-bars text-xl';
+      });
+    });
+
+    // ── Smooth scroll para anclas ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const headerH = header.offsetHeight;
+          const top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Animaciones fade-in al hacer scroll (Intersection Observer) ──
+    const fadeEls = document.querySelectorAll('.fade-in-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ── Actualizar nav link activo al hacer scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY + header.offsetHeight + 60;
+      let current = '';
+      sections.forEach(sec => {
+        if (sec.offsetTop <= scrollY) current = sec.id;
+      });
+
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href').slice(1);
+        link.classList.toggle('nav-link-active', href === current);
+        if (href === current) {
+          link.style.color = '#E90065';
+        } else {
+          link.style.color = '';
+        }
+      });
+    }, { passive: true });
+
+    // ── Establecer fechas mínimas en inputs de fecha ──
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelectorAll('input[type="date"]').forEach((inp, i) => {
+      inp.min = today;
+      // Check-in: hoy, Check-out: mañana
+      if (i % 2 === 0) {
+        inp.value = today;
+      } else {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        inp.value = tomorrow.toISOString().split('T')[0];
+      }
+    });
+  </script>
+
+</body>
+</html>
