@@ -5,14 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mesón Santa Rosa — Hotel Boutique en Tlaxcala, México</title>
   <meta name="description" content="Mesón Santa Rosa, hotel boutique y restaurante ubicado en el corazón histórico de Tlaxcala. Disfruta habitaciones renovadas, desayunos gourmet y vistas al Patrimonio de la Humanidad." />
+  <link rel="canonical" href="https://santarosameson.com/" />
 
-  <!-- Preconnect Google Fonts -->
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://santarosameson.com/" />
+  <meta property="og:title" content="Mesón Santa Rosa — Hotel Boutique en Tlaxcala" />
+  <meta property="og:description" content="Un retiro boutique en el corazón histórico de Tlaxcala, frente al Ex Convento de San Francisco, Patrimonio de la Humanidad UNESCO" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://santarosameson.com/" />
+  <meta property="twitter:title" content="Mesón Santa Rosa — Hotel Boutique en Tlaxcala" />
+  <meta property="twitter:description" content="Un retiro boutique en el corazón histórico de Tlaxcala, frente al Ex Convento de San Francisco, Patrimonio de la Humanidad UNESCO" />
+  <meta property="twitter:image" content="https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Font Awesome (defer loading) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
+
+  <!-- Google Fonts with display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS (JIT via CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -42,6 +61,65 @@
     }
   </script>
 
+  <!-- JSON-LD Structured Data for Hotel -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Mesón Santa Rosa",
+    "description": "Hotel boutique y restaurante en el corazón histórico de Tlaxcala",
+    "url": "https://santarosameson.com/",
+    "telephone": "+52 246 123 4567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Principal s/n, Centro Histórico",
+      "addressLocality": "Tlaxcala",
+      "addressRegion": "Tlaxcala",
+      "addressCountry": "MX"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "19.3191",
+      "longitude": "-98.2375"
+    },
+    "starRating": {
+      "@type": "Rating",
+      "ratingValue": "4.5"
+    },
+    "priceRange": "$$",
+    "image": "https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80",
+    "amenityFeature": [
+      {"@type": "LocationFeatureSpecification", "name": "WiFi gratis", "value": true},
+      {"@type": "LocationFeatureSpecification", "name": "Restaurante", "value": true},
+      {"@type": "LocationFeatureSpecification", "name": "Terraza", "value": true}
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "15:00"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Review Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    "itemReviewed": {
+      "@type": "Hotel",
+      "name": "Mesón Santa Rosa"
+    },
+    "ratingValue": "9.4",
+    "bestRating": "10",
+    "worstRating": "1",
+    "ratingCount": "248"
+  }
+  </script>
+
   <style>
     /* ── Variables globales ── */
     :root {
@@ -64,6 +142,32 @@
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--cream); }
     ::-webkit-scrollbar-thumb { background: #d4a5a5; border-radius: 9999px; }
+
+    /* ── Smooth scroll ── */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ── Focus visible for accessibility ── */
+    :focus-visible {
+      outline: 2px solid #E90065;
+      outline-offset: 2px;
+    }
+
+    /* ── Skip to content link ── */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #E90065;
+      color: white;
+      padding: 8px 16px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
 
     /* ── Header: transición al hacer scroll ── */
     #main-header {
@@ -222,15 +326,23 @@
     }
     .section-divider i { color: #E90065; font-size: 0.75rem; }
 
-    /* ── Responsive: ocultar widgets flotantes en móvil ── */
-    @media (max-width: 1023px) {
+    /* ── Responsive: hide floating widgets on very small screens, show on md+ ── */
+    @media (max-width: 639px) {
       .floating-booking { display: none !important; }
       .floating-review  { display: none !important; }
+    }
+    /* Show floating widgets on tablet and desktop */
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .floating-booking { display: block !important; }
+      .floating-review  { display: block !important; }
     }
   </style>
 </head>
 
 <body class="bg-cream-bg">
+
+  <!-- Skip to content link for accessibility -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
   <!-- ╔══════════════════════════════════════════════════════╗ -->
   <!-- ║  A. HEADER / NAVEGACIÓN                             ║ -->
@@ -296,6 +408,7 @@
   <!-- ╔══════════════════════════════════════════════════════╗ -->
   <!-- ║  B. HERO + WIDGETS FLOTANTES                        ║ -->
   <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <main id="main-content">
   <section id="inicio" class="relative w-full" style="min-height: 92vh;">
 
     <!-- Imagen de fondo del hero -->
@@ -304,7 +417,8 @@
         src="https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1920&q=80"
         alt="Patio colonial mexicano con arcos de piedra y fuente central"
         class="w-full h-full object-cover object-center"
-        loading="eager"
+        fetchpriority="high"
+        decoding="async"
       />
       <div class="hero-overlay absolute inset-0"></div>
     </div>
@@ -384,7 +498,7 @@
         </div>
 
         <!-- CTA button aligned to bottom of row -->
-        <button class="btn-pink flex-shrink-0 py-2.5 px-4 rounded-lg text-xs font-semibold font-sans flex items-center gap-1.5" style="padding-top:9px; padding-bottom:9px;">
+        <button type="button" class="btn-pink flex-shrink-0 py-2.5 px-4 rounded-lg text-xs font-semibold font-sans flex items-center gap-1.5" style="padding-top:9px; padding-bottom:9px;">
           <i class="fa-solid fa-search text-xs"></i>
           Verificar
         </button>
@@ -446,7 +560,7 @@
           </select>
         </div>
         <div class="flex-shrink-0">
-          <button class="btn-pink w-full sm:w-auto py-3 px-5 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+          <button type="button" class="btn-pink w-full sm:w-auto py-3 px-5 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
             <i class="fa-solid fa-search text-xs"></i>
             Buscar
           </button>
@@ -1246,7 +1360,7 @@
       </div>
     </div>
   </section>
-
+  </main>
 
   <!-- ╔══════════════════════════════════════════════════════╗ -->
   <!-- ║  K. FOOTER                                          ║ -->
@@ -1340,10 +1454,24 @@
     </div>
   </footer>
 
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/522461234567" 
+     class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-colors"
+     aria-label="Contactar vía WhatsApp"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+  </a>
 
-  <!-- ╔══════════════════════════════════════════════════════╗ -->
-  <!-- ║  JAVASCRIPT                                         ║ -->
-  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <!-- Mobile: Sticky Book Now Button -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 lg:hidden z-40 md:hidden">
+    <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+      <i class="fa-solid fa-calendar-check text-xs"></i>
+      Reservar Ahora
+    </a>
+  </div>
+
+  <!-- Mobile menu toggle script -->
   <script>
     // ── Header scrolled state ──
     const header = document.getElementById('main-header');
