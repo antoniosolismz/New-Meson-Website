@@ -112,13 +112,7 @@ El sitio puede desplegarse en cualquier hosting estático:
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT - voir el archivo [LICENSE](LICENSE) para detalles.
-
-## Contacto
-
-- **Sitio web**: https://santarosameson.com
-- **Ubicación**: Calle Principal s/n, Centro Histórico, Tlaxcala, México
-- **Teléfono**: +52 246 123 4567
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
 
 ---
 
