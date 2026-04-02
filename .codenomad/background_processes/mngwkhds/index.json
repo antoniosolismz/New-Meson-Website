@@ -1,0 +1,26 @@
+[
+  {
+    "id": "proc_2026-04-02T0316_3c8876",
+    "workspaceId": "mngwkhds",
+    "title": "static-http-server",
+    "command": "python -m http.server 8000",
+    "cwd": "/root/New-Meson-Website",
+    "status": "error",
+    "pid": 2128,
+    "startedAt": "2026-04-02T03:16:59.851Z",
+    "outputSizeBytes": 40,
+    "exitCode": 127,
+    "stoppedAt": "2026-04-02T03:16:59.853Z"
+  },
+  {
+    "id": "proc_2026-04-02T0317_73fac4",
+    "workspaceId": "mngwkhds",
+    "title": "static-http-server",
+    "command": "python3 -m http.server 8000",
+    "cwd": "/root/New-Meson-Website",
+    "status": "running",
+    "pid": 2254,
+    "startedAt": "2026-04-02T03:17:10.106Z",
+    "outputSizeBytes": 0
+  }
+]

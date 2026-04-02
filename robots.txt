@@ -1,11 +1,11 @@
 # Robots.txt para Mesón Santa Rosa
-# https://santarosameson.com/
+# https://mesonsantarosa.com.mx/
 
 User-agent: *
 Allow: /
 
 # Archivos sitemap
-Sitemap: https://santarosameson.com/sitemap.xml
+Sitemap: https://mesonsantarosa.com.mx/sitemap.xml
 
 # Rutas no indexables (opcional)
 Disallow: /cgi-bin/
