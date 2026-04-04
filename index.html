@@ -324,13 +324,16 @@
       position: fixed;
       inset: 0;
       z-index: 100;
-      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow: hidden;
     }
     .room-modal.active {
       display: flex;
     }
     .room-modal-backdrop {
-      position: fixed;
+      position: absolute;
       inset: 0;
       background: rgba(30, 15, 5, 0.75);
       backdrop-filter: blur(4px);
@@ -338,8 +341,31 @@
     }
     .room-modal-content {
       position: relative;
-      margin: auto;
+      width: min(1100px, 100%);
+      max-height: calc(100vh - 2rem);
       animation: slideUp 350ms ease-out;
+    }
+    .room-modal-grid {
+      height: min(760px, calc(100vh - 2rem));
+      max-height: calc(100vh - 2rem);
+      min-height: 0;
+    }
+    .room-modal-gallery-column {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .room-modal-main-image-wrap {
+      flex: 1 1 auto;
+      min-height: 320px;
+    }
+    .room-modal-thumbnails-strip {
+      padding: 0.65rem;
+      gap: 0.45rem;
+    }
+    .room-modal-info {
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
     }
     .room-modal.closing .room-modal-backdrop {
       animation: fadeOut 250ms ease-in;
@@ -366,6 +392,8 @@
     .room-modal-gallery-thumb {
       transition: opacity 0.2s ease, border-color 0.2s ease;
       cursor: pointer;
+      width: 64px;
+      height: 64px;
     }
     .room-modal-gallery-thumb:hover {
       opacity: 0.7;
@@ -421,6 +449,23 @@
     @media (min-width: 640px) and (max-width: 1023px) {
       .floating-booking { display: block !important; }
       .floating-review  { display: block !important; }
+    }
+    @media (max-width: 1023px) {
+      .room-modal {
+        align-items: flex-start;
+        overflow-y: auto;
+      }
+      .room-modal-content {
+        max-height: none;
+      }
+      .room-modal-grid,
+      .room-modal-info {
+        max-height: none;
+      }
+      .room-modal-main-image-wrap {
+        min-height: 220px;
+        height: clamp(220px, 44vh, 340px);
+      }
     }
   </style>
 </head>
@@ -1738,30 +1783,30 @@
     <div class="room-modal-backdrop" aria-hidden="true"></div>
     
     <!-- Modal Content -->
-    <div class="room-modal-content w-full max-w-5xl mx-4 my-8 bg-white rounded-2xl shadow-float overflow-hidden">
+    <div class="room-modal-content bg-white rounded-2xl shadow-float overflow-hidden">
       
       <!-- Close Button -->
       <button id="room-modal-close" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-brown-heading hover:bg-pink-meson hover:text-white transition-colors shadow-md" aria-label="Cerrar modal">
         <i class="fa-solid fa-xmark text-xl"></i>
       </button>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+      <div class="room-modal-grid grid grid-cols-1 lg:grid-cols-2 gap-0">
         
         <!-- Galería de imágenes (izquierda) -->
-        <div class="relative bg-stone-50">
+        <div class="room-modal-gallery-column relative bg-stone-50">
           <!-- Imagen principal -->
-          <div class="relative" style="height:400px;">
+          <div class="room-modal-main-image-wrap relative">
             <img id="room-modal-main-img" src="" alt="" class="w-full h-full object-cover" />
           </div>
           
           <!-- Miniaturas -->
-          <div id="room-modal-thumbnails" class="flex gap-2 p-4 overflow-x-auto">
+          <div id="room-modal-thumbnails" class="room-modal-thumbnails-strip flex overflow-x-auto">
             <!-- Las miniaturas se generarán dinámicamente -->
           </div>
         </div>
 
         <!-- Información de la habitación (derecha) -->
-        <div class="p-6 lg:p-8 overflow-y-auto" style="max-height:600px;">
+        <div class="room-modal-info p-6 lg:p-8">
           
           <!-- Título -->
           <div class="mb-5">
@@ -1948,7 +1993,7 @@
       thumbnailsContainer.innerHTML = '';
       room.images.forEach((img, index) => {
         const thumb = document.createElement('button');
-        thumb.className = `room-modal-gallery-thumb flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${index === 0 ? 'border-pink-meson' : 'border-stone-200'}`;
+        thumb.className = `room-modal-gallery-thumb flex-shrink-0 rounded-lg overflow-hidden border-2 ${index === 0 ? 'border-pink-meson' : 'border-stone-200'}`;
         thumb.innerHTML = `<img src="${img.src}" alt="${img.alt}" class="w-full h-full object-cover" />`;
         thumb.setAttribute('aria-label', `Ver imagen ${index + 1}: ${img.alt}`);
         
