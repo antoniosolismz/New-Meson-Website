@@ -136,6 +136,17 @@
       font-family: 'Inter', sans-serif !important;
       background-color: var(--cream);
       color: var(--brown-b);
+      overflow-x: hidden;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    img,
+    video,
+    iframe {
+      max-width: 100%;
     }
 
     /* ── Fuente Serif global ── */
@@ -465,6 +476,14 @@
       .room-modal-main-image-wrap {
         min-height: 220px;
         height: clamp(220px, 44vh, 340px);
+      }
+
+      /* Prevent any fixed/absolute decorative element from creating horizontal clipping on mobile/tablet */
+      body,
+      section,
+      header,
+      footer {
+        max-width: 100%;
       }
     }
   </style>
@@ -1884,10 +1903,27 @@
         bed: '1 cama matrimonial',
         price: '$55',
         images: [
-          { src: '/assets/originals/habitacion-estandar.jpg', alt: 'Habitación estándar con cama matrimonial' },
-          { src: '/assets/originals/toallas.jpg', alt: 'Toallas de calidad premium' },
-          { src: '/assets/originals/cafetera-habitacion.jpg', alt: 'Cafetera en habitación' },
-          { src: '/assets/originals/regadera.jpg', alt: 'Baño privado con regadera' }
+          { src: '/assets/originals/Estandar/20260330_134553.jpg', alt: 'Habitación Estándar - foto 1' },
+          { src: '/assets/originals/Estandar/20260330_134609.jpg', alt: 'Habitación Estándar - foto 2' },
+          { src: '/assets/originals/Estandar/20260330_134614.jpg', alt: 'Habitación Estándar - foto 3' },
+          { src: '/assets/originals/Estandar/20260330_134632.jpg', alt: 'Habitación Estándar - foto 4' },
+          { src: '/assets/originals/Estandar/20260330_134636.jpg', alt: 'Habitación Estándar - foto 5' },
+          { src: '/assets/originals/Estandar/20260330_134645.jpg', alt: 'Habitación Estándar - foto 6' },
+          { src: '/assets/originals/Estandar/20260330_134658.jpg', alt: 'Habitación Estándar - foto 7' },
+          { src: '/assets/originals/Estandar/20260330_134720.jpg', alt: 'Habitación Estándar - foto 8' },
+          { src: '/assets/originals/Estandar/20260330_134731.jpg', alt: 'Habitación Estándar - foto 9' },
+          { src: '/assets/originals/Estandar/20260330_134733.jpg', alt: 'Habitación Estándar - foto 10' },
+          { src: '/assets/originals/Estandar/20260330_134750.jpg', alt: 'Habitación Estándar - foto 11' },
+          { src: '/assets/originals/Estandar/20260330_134809.jpg', alt: 'Habitación Estándar - foto 12' },
+          { src: '/assets/originals/Estandar/20260330_134811.jpg', alt: 'Habitación Estándar - foto 13' },
+          { src: '/assets/originals/Estandar/20260330_134818.jpg', alt: 'Habitación Estándar - foto 14' },
+          { src: '/assets/originals/Estandar/20260330_134824.jpg', alt: 'Habitación Estándar - foto 15' },
+          { src: '/assets/originals/Estandar/20260330_134829.jpg', alt: 'Habitación Estándar - foto 16' },
+          { src: '/assets/originals/Estandar/20260330_134833.jpg', alt: 'Habitación Estándar - foto 17' },
+          { src: '/assets/originals/Estandar/20260330_134839.jpg', alt: 'Habitación Estándar - foto 18' },
+          { src: '/assets/originals/Estandar/20260330_134849.jpg', alt: 'Habitación Estándar - foto 19' },
+          { src: '/assets/originals/Estandar/20260330_134854.jpg', alt: 'Habitación Estándar - foto 20' },
+          { src: '/assets/originals/Estandar/20260330_134905.jpg', alt: 'Habitación Estándar - foto 21' }
         ],
         amenities: [
           { icon: 'fa-wifi', text: 'WiFi de alta velocidad gratis' },
@@ -1909,10 +1945,40 @@
         bed: '1 cama King',
         price: '$70',
         images: [
-          { src: '/assets/originals/habitacion-king.jpg', alt: 'Habitación King Size con cama king' },
-          { src: '/assets/originals/lababo-king.jpg', alt: 'Baño moderno con lavabo elegante' },
-          { src: '/assets/originals/toallas.jpg', alt: 'Toallas de calidad premium' },
-          { src: '/assets/originals/cafetera-habitacion.jpg', alt: 'Cafetera en habitación' }
+          { src: '/assets/originals/King/20260330_133809.jpg', alt: 'Habitación King - foto 1' },
+          { src: '/assets/originals/King/20260330_133819.jpg', alt: 'Habitación King - foto 2' },
+          { src: '/assets/originals/King/20260330_133829.jpg', alt: 'Habitación King - foto 3' },
+          { src: '/assets/originals/King/20260330_133927.jpg', alt: 'Habitación King - foto 4' },
+          { src: '/assets/originals/King/20260330_133929.jpg', alt: 'Habitación King - foto 5' },
+          { src: '/assets/originals/King/20260330_133935.jpg', alt: 'Habitación King - foto 6' },
+          { src: '/assets/originals/King/20260330_133942.jpg', alt: 'Habitación King - foto 7' },
+          { src: '/assets/originals/King/20260330_134001.jpg', alt: 'Habitación King - foto 8' },
+          { src: '/assets/originals/King/20260330_134005.jpg', alt: 'Habitación King - foto 9' },
+          { src: '/assets/originals/King/20260330_134017.jpg', alt: 'Habitación King - foto 10' },
+          { src: '/assets/originals/King/20260330_134026.jpg', alt: 'Habitación King - foto 11' },
+          { src: '/assets/originals/King/20260330_134029.jpg', alt: 'Habitación King - foto 12' },
+          { src: '/assets/originals/King/20260330_134034.jpg', alt: 'Habitación King - foto 13' },
+          { src: '/assets/originals/King/20260330_134047.jpg', alt: 'Habitación King - foto 14' },
+          { src: '/assets/originals/King/20260330_134051.jpg', alt: 'Habitación King - foto 15' },
+          { src: '/assets/originals/King/20260330_134104.jpg', alt: 'Habitación King - foto 16' },
+          { src: '/assets/originals/King/20260330_134108.jpg', alt: 'Habitación King - foto 17' },
+          { src: '/assets/originals/King/20260330_134113.jpg', alt: 'Habitación King - foto 18' },
+          { src: '/assets/originals/King/20260330_134127.jpg', alt: 'Habitación King - foto 19' },
+          { src: '/assets/originals/King/20260330_134144.jpg', alt: 'Habitación King - foto 20' },
+          { src: '/assets/originals/King/20260330_134151.jpg', alt: 'Habitación King - foto 21' },
+          { src: '/assets/originals/King/20260330_134157.jpg', alt: 'Habitación King - foto 22' },
+          { src: '/assets/originals/King/20260330_134203.jpg', alt: 'Habitación King - foto 23' },
+          { src: '/assets/originals/King/20260330_134217.jpg', alt: 'Habitación King - foto 24' },
+          { src: '/assets/originals/King/20260330_134225.jpg', alt: 'Habitación King - foto 25' },
+          { src: '/assets/originals/King/20260330_134238.jpg', alt: 'Habitación King - foto 26' },
+          { src: '/assets/originals/King/20260330_134244.jpg', alt: 'Habitación King - foto 27' },
+          { src: '/assets/originals/King/20260330_134246.jpg', alt: 'Habitación King - foto 28' },
+          { src: '/assets/originals/King/20260330_134258.jpg', alt: 'Habitación King - foto 29' },
+          { src: '/assets/originals/King/20260330_134312.jpg', alt: 'Habitación King - foto 30' },
+          { src: '/assets/originals/King/20260330_134318.jpg', alt: 'Habitación King - foto 31' },
+          { src: '/assets/originals/King/20260330_134322.jpg', alt: 'Habitación King - foto 32' },
+          { src: '/assets/originals/King/20260330_134326.jpg', alt: 'Habitación King - foto 33' },
+          { src: '/assets/originals/King/20260330_134331.jpg', alt: 'Habitación King - foto 34' }
         ],
         amenities: [
           { icon: 'fa-tv', text: 'Smart TV 42 pulgadas' },
@@ -1935,10 +2001,49 @@
         bed: '2 camas matrimoniales',
         price: '$90',
         images: [
-          { src: '/assets/originals/habitacion-doble.jpg', alt: 'Habitación doble con dos camas matrimoniales' },
-          { src: '/assets/originals/toallas.jpg', alt: 'Toallas de calidad premium' },
-          { src: '/assets/originals/regadera.jpg', alt: 'Baño privado con regadera' },
-          { src: '/assets/originals/cafetera-habitacion.jpg', alt: 'Cafetera en habitación' }
+          { src: '/assets/originals/Doble/20260330_133003.jpg', alt: 'Habitación Doble - foto 1' },
+          { src: '/assets/originals/Doble/20260330_133011.jpg', alt: 'Habitación Doble - foto 2' },
+          { src: '/assets/originals/Doble/20260330_133024.jpg', alt: 'Habitación Doble - foto 3' },
+          { src: '/assets/originals/Doble/20260330_133041.jpg', alt: 'Habitación Doble - foto 4' },
+          { src: '/assets/originals/Doble/20260330_133046.jpg', alt: 'Habitación Doble - foto 5' },
+          { src: '/assets/originals/Doble/20260330_133057.jpg', alt: 'Habitación Doble - foto 6' },
+          { src: '/assets/originals/Doble/20260330_133107.jpg', alt: 'Habitación Doble - foto 7' },
+          { src: '/assets/originals/Doble/20260330_133121.jpg', alt: 'Habitación Doble - foto 8' },
+          { src: '/assets/originals/Doble/20260330_133139.jpg', alt: 'Habitación Doble - foto 9' },
+          { src: '/assets/originals/Doble/20260330_133200.jpg', alt: 'Habitación Doble - foto 10' },
+          { src: '/assets/originals/Doble/20260330_133205.jpg', alt: 'Habitación Doble - foto 11' },
+          { src: '/assets/originals/Doble/20260330_133216.jpg', alt: 'Habitación Doble - foto 12' },
+          { src: '/assets/originals/Doble/20260330_133230.jpg', alt: 'Habitación Doble - foto 13' },
+          { src: '/assets/originals/Doble/20260330_133243.jpg', alt: 'Habitación Doble - foto 14' },
+          { src: '/assets/originals/Doble/20260330_133253.jpg', alt: 'Habitación Doble - foto 15' },
+          { src: '/assets/originals/Doble/20260330_133300.jpg', alt: 'Habitación Doble - foto 16' },
+          { src: '/assets/originals/Doble/20260330_133310.jpg', alt: 'Habitación Doble - foto 17' },
+          { src: '/assets/originals/Doble/20260330_133314.jpg', alt: 'Habitación Doble - foto 18' },
+          { src: '/assets/originals/Doble/20260330_133327.jpg', alt: 'Habitación Doble - foto 19' },
+          { src: '/assets/originals/Doble/20260330_133338.jpg', alt: 'Habitación Doble - foto 20' },
+          { src: '/assets/originals/Doble/20260330_133400.jpg', alt: 'Habitación Doble - foto 21' },
+          { src: '/assets/originals/Doble/20260330_133404.jpg', alt: 'Habitación Doble - foto 22' },
+          { src: '/assets/originals/Doble/20260330_133412.jpg', alt: 'Habitación Doble - foto 23' },
+          { src: '/assets/originals/Doble/20260330_133416.jpg', alt: 'Habitación Doble - foto 24' },
+          { src: '/assets/originals/Doble/20260330_133448.jpg', alt: 'Habitación Doble - foto 25' },
+          { src: '/assets/originals/Doble/20260330_133451.jpg', alt: 'Habitación Doble - foto 26' },
+          { src: '/assets/originals/Doble/20260330_133454.jpg', alt: 'Habitación Doble - foto 27' },
+          { src: '/assets/originals/Doble/20260330_133502.jpg', alt: 'Habitación Doble - foto 28' },
+          { src: '/assets/originals/Doble/20260330_133504.jpg', alt: 'Habitación Doble - foto 29' },
+          { src: '/assets/originals/Doble/20260330_133509.jpg', alt: 'Habitación Doble - foto 30' },
+          { src: '/assets/originals/Doble/20260330_133511.jpg', alt: 'Habitación Doble - foto 31' },
+          { src: '/assets/originals/Doble/20260330_133515.jpg', alt: 'Habitación Doble - foto 32' },
+          { src: '/assets/originals/Doble/20260330_133521.jpg', alt: 'Habitación Doble - foto 33' },
+          { src: '/assets/originals/Doble/20260330_133524.jpg', alt: 'Habitación Doble - foto 34' },
+          { src: '/assets/originals/Doble/20260330_133527.jpg', alt: 'Habitación Doble - foto 35' },
+          { src: '/assets/originals/Doble/20260330_133540.jpg', alt: 'Habitación Doble - foto 36' },
+          { src: '/assets/originals/Doble/20260330_133544.jpg', alt: 'Habitación Doble - foto 37' },
+          { src: '/assets/originals/Doble/20260330_133551.jpg', alt: 'Habitación Doble - foto 38' },
+          { src: '/assets/originals/Doble/20260330_133558.jpg', alt: 'Habitación Doble - foto 39' },
+          { src: '/assets/originals/Doble/20260330_133601.jpg', alt: 'Habitación Doble - foto 40' },
+          { src: '/assets/originals/Doble/20260330_133611.jpg', alt: 'Habitación Doble - foto 41' },
+          { src: '/assets/originals/Doble/20260330_133614.jpg', alt: 'Habitación Doble - foto 42' },
+          { src: '/assets/originals/Doble/20260330_133618.jpg', alt: 'Habitación Doble - foto 43' }
         ],
         amenities: [
           { icon: 'fa-wifi', text: 'WiFi de alta velocidad gratis' },
