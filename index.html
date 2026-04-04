@@ -318,6 +318,65 @@
       max-height: 400px;
     }
 
+    /* ── Modal de habitación ── */
+    .room-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      overflow-y: auto;
+    }
+    .room-modal.active {
+      display: flex;
+    }
+    .room-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 15, 5, 0.75);
+      backdrop-filter: blur(4px);
+      animation: fadeIn 300ms ease-out;
+    }
+    .room-modal-content {
+      position: relative;
+      margin: auto;
+      animation: slideUp 350ms ease-out;
+    }
+    .room-modal.closing .room-modal-backdrop {
+      animation: fadeOut 250ms ease-in;
+    }
+    .room-modal.closing .room-modal-content {
+      animation: slideDown 250ms ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(40px); opacity: 0; }
+    }
+    .room-modal-gallery-thumb {
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+    .room-modal-gallery-thumb:hover {
+      opacity: 0.7;
+    }
+    .room-modal-gallery-thumb.active {
+      border-color: #E90065;
+    }
+    body.modal-open {
+      overflow: hidden;
+    }
+
     /* ── Input del widget ── */
     .booking-input {
       border: 1px solid #e2d5c9;
@@ -764,7 +823,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-up">
 
         <!-- Habitación Estándar -->
-        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card">
+        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card cursor-pointer" data-room="estandar">
           <div class="gallery-img-wrap" style="height:260px;">
             <img
               src="/assets/originals/habitacion-estandar.jpg"
@@ -817,15 +876,15 @@
               <p class="font-serif text-2xl font-bold" style="color:#E90065;">$55 <span class="text-sm font-normal text-brown-body font-sans">USD/noche</span></p>
             </div>
 
-            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
-              <i class="fa-solid fa-calendar-check text-xs"></i>
-              Reservar
-            </a>
+            <button class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye text-xs"></i>
+              Ver Detalles
+            </button>
           </div>
         </div>
 
         <!-- Habitación King Size -->
-        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card">
+        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card cursor-pointer" data-room="king">
           <div class="gallery-img-wrap" style="height:260px;">
             <img
               src="/assets/originals/habitacion-king.jpg"
@@ -881,15 +940,15 @@
               <p class="font-serif text-2xl font-bold" style="color:#E90065;">$70 <span class="text-sm font-normal text-brown-body font-sans">USD/noche</span></p>
             </div>
 
-            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
-              <i class="fa-solid fa-calendar-check text-xs"></i>
-              Reservar
-            </a>
+            <button class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye text-xs"></i>
+              Ver Detalles
+            </button>
           </div>
         </div>
 
         <!-- Habitación Doble -->
-        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card">
+        <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card cursor-pointer" data-room="doble">
           <div class="gallery-img-wrap" style="height:260px;">
             <img
               src="/assets/originals/habitacion-doble.jpg"
@@ -942,10 +1001,10 @@
               <p class="font-serif text-2xl font-bold" style="color:#E90065;">$90 <span class="text-sm font-normal text-brown-body font-sans">USD/noche</span></p>
             </div>
 
-            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
-              <i class="fa-solid fa-calendar-check text-xs"></i>
-              Reservar
-            </a>
+            <button class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+              <i class="fa-solid fa-eye text-xs"></i>
+              Ver Detalles
+            </button>
           </div>
         </div>
 
@@ -1671,8 +1730,325 @@
     </a>
   </div>
 
+  <!-- ╔══════════════════════════════════════════════════════╗ -->
+  <!-- ║  MODAL DE HABITACIÓN                                ║ -->
+  <!-- ╚══════════════════════════════════════════════════════╝ -->
+  <div id="room-modal" class="room-modal" role="dialog" aria-modal="true" aria-labelledby="room-modal-title">
+    <!-- Backdrop -->
+    <div class="room-modal-backdrop" aria-hidden="true"></div>
+    
+    <!-- Modal Content -->
+    <div class="room-modal-content w-full max-w-5xl mx-4 my-8 bg-white rounded-2xl shadow-float overflow-hidden">
+      
+      <!-- Close Button -->
+      <button id="room-modal-close" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-brown-heading hover:bg-pink-meson hover:text-white transition-colors shadow-md" aria-label="Cerrar modal">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        
+        <!-- Galería de imágenes (izquierda) -->
+        <div class="relative bg-stone-50">
+          <!-- Imagen principal -->
+          <div class="relative" style="height:400px;">
+            <img id="room-modal-main-img" src="" alt="" class="w-full h-full object-cover" />
+          </div>
+          
+          <!-- Miniaturas -->
+          <div id="room-modal-thumbnails" class="flex gap-2 p-4 overflow-x-auto">
+            <!-- Las miniaturas se generarán dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Información de la habitación (derecha) -->
+        <div class="p-6 lg:p-8 overflow-y-auto" style="max-height:600px;">
+          
+          <!-- Título -->
+          <div class="mb-5">
+            <h2 id="room-modal-title" class="font-serif text-3xl font-bold text-brown-heading mb-1"></h2>
+            <p id="room-modal-subtitle" class="font-sans text-sm text-brown-body"></p>
+          </div>
+
+          <!-- Especificaciones -->
+          <div class="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-stone-200">
+            <div class="text-center p-3 rounded-xl bg-cream-bg">
+              <i class="fa-solid fa-expand text-lg mb-2 block" style="color:#E90065;"></i>
+              <p id="room-modal-size" class="font-sans text-xs text-brown-body font-medium"></p>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-cream-bg">
+              <i id="room-modal-capacity-icon" class="fa-solid fa-user text-lg mb-2 block" style="color:#E90065;"></i>
+              <p id="room-modal-capacity" class="font-sans text-xs text-brown-body font-medium"></p>
+            </div>
+            <div class="text-center p-3 rounded-xl bg-cream-bg">
+              <i class="fa-solid fa-bed text-lg mb-2 block" style="color:#E90065;"></i>
+              <p id="room-modal-bed" class="font-sans text-xs text-brown-body font-medium"></p>
+            </div>
+          </div>
+
+          <!-- Amenidades completas -->
+          <div class="mb-6">
+            <h3 class="font-serif text-lg font-semibold text-brown-heading mb-3">Amenidades Incluidas</h3>
+            <div id="room-modal-amenities" class="space-y-2">
+              <!-- Las amenidades se generarán dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Precio -->
+          <div class="bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-meson/30 rounded-xl p-5 mb-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-sans text-xs text-brown-body mb-1">Precio desde</p>
+                <p class="font-serif text-3xl font-bold" style="color:#E90065;">
+                  <span id="room-modal-price"></span>
+                  <span class="text-base font-normal text-brown-body font-sans">USD/noche</span>
+                </p>
+              </div>
+              <div class="text-center">
+                <i class="fa-solid fa-tag text-2xl" style="color:#E90065;"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="space-y-3">
+            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+              <i class="fa-solid fa-calendar-check text-xs"></i>
+              Reservar Ahora
+            </a>
+            <button id="room-modal-close-btn" class="w-full text-center py-3 rounded-lg text-sm font-medium font-sans border-2 border-stone-200 text-brown-body hover:border-pink-meson hover:text-pink-meson transition-colors">
+              Cerrar
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Mobile menu toggle script -->
   <script>
+    // ── Room data structure ──
+    const roomsData = {
+      estandar: {
+        title: 'Habitación Estándar',
+        subtitle: 'Habitación ejecutiva • Vista al jardín',
+        size: '161 pies cuadrados',
+        capacity: 'Máx. 2 personas',
+        capacityIcon: 'fa-user',
+        bed: '1 cama matrimonial',
+        price: '$55',
+        images: [
+          { src: '/assets/originals/habitacion-estandar.jpg', alt: 'Habitación estándar con cama matrimonial' },
+          { src: '/assets/originals/toallas.jpg', alt: 'Toallas de calidad premium' },
+          { src: '/assets/originals/cafetera-habitacion.jpg', alt: 'Cafetera en habitación' },
+          { src: '/assets/originals/regadera.jpg', alt: 'Baño privado con regadera' }
+        ],
+        amenities: [
+          { icon: 'fa-wifi', text: 'WiFi de alta velocidad gratis' },
+          { icon: 'fa-mug-hot', text: 'Café y té de cortesía' },
+          { icon: 'fa-leaf', text: 'Vista al jardín interior' },
+          { icon: 'fa-wheelchair', text: 'Habitación accesible' },
+          { icon: 'fa-bed', text: 'Ropa de cama premium' },
+          { icon: 'fa-bath', text: 'Baño privado con amenidades' },
+          { icon: 'fa-broom', text: 'Servicio de limpieza diario' },
+          { icon: 'fa-fan', text: 'Ventilador de techo' }
+        ]
+      },
+      king: {
+        title: 'Habitación King Size',
+        subtitle: 'Habitación superior • Vista al jardín',
+        size: '248 pies cuadrados',
+        capacity: 'Máx. 2 personas',
+        capacityIcon: 'fa-user',
+        bed: '1 cama King',
+        price: '$70',
+        images: [
+          { src: '/assets/originals/habitacion-king.jpg', alt: 'Habitación King Size con cama king' },
+          { src: '/assets/originals/lababo-king.jpg', alt: 'Baño moderno con lavabo elegante' },
+          { src: '/assets/originals/toallas.jpg', alt: 'Toallas de calidad premium' },
+          { src: '/assets/originals/cafetera-habitacion.jpg', alt: 'Cafetera en habitación' }
+        ],
+        amenities: [
+          { icon: 'fa-tv', text: 'Smart TV 42 pulgadas' },
+          { icon: 'fa-n', text: 'Netflix incluido' },
+          { icon: 'fa-wifi', text: 'WiFi de alta velocidad gratis' },
+          { icon: 'fa-mug-hot', text: 'Café y té de cortesía' },
+          { icon: 'fa-leaf', text: 'Vista al jardín interior' },
+          { icon: 'fa-bed', text: 'Cama King Size premium' },
+          { icon: 'fa-bath', text: 'Baño privado moderno' },
+          { icon: 'fa-broom', text: 'Servicio de limpieza diario' },
+          { icon: 'fa-wind', text: 'Aire acondicionado' }
+        ]
+      },
+      doble: {
+        title: 'Habitación Doble',
+        subtitle: 'Habitación familiar • Amplio espacio',
+        size: 'Habitación amplia',
+        capacity: 'Máx. 4 personas',
+        capacityIcon: 'fa-user-group',
+        bed: '2 camas matrimoniales',
+        price: '$90',
+        images: [
+          { src: '/assets/originals/habitacion-doble.jpg', alt: 'Habitación doble con dos camas matrimoniales' },
+          { src: '/assets/originals/toallas.jpg', alt: 'Toallas de calidad premium' },
+          { src: '/assets/originals/regadera.jpg', alt: 'Baño privado con regadera' },
+          { src: '/assets/originals/cafetera-habitacion.jpg', alt: 'Cafetera en habitación' }
+        ],
+        amenities: [
+          { icon: 'fa-wifi', text: 'WiFi de alta velocidad gratis' },
+          { icon: 'fa-bath', text: 'Baño privado amplio' },
+          { icon: 'fa-users', text: 'Ideal para familias' },
+          { icon: 'fa-leaf', text: 'Vista al jardín interior' },
+          { icon: 'fa-bed', text: '2 camas matrimoniales' },
+          { icon: 'fa-mug-hot', text: 'Café y té de cortesía' },
+          { icon: 'fa-broom', text: 'Servicio de limpieza diario' },
+          { icon: 'fa-couch', text: 'Área de estar amplia' }
+        ]
+      }
+    };
+
+    // ── Modal functionality ──
+    const modal = document.getElementById('room-modal');
+    const modalBackdrop = modal.querySelector('.room-modal-backdrop');
+    const closeBtn = document.getElementById('room-modal-close');
+    const closeBtnBottom = document.getElementById('room-modal-close-btn');
+    const mainImg = document.getElementById('room-modal-main-img');
+    const thumbnailsContainer = document.getElementById('room-modal-thumbnails');
+    
+    let currentRoom = null;
+    let firstFocusableElement = null;
+    let lastFocusableElement = null;
+
+    // Función para abrir modal
+    const openRoomModal = (roomType) => {
+      const room = roomsData[roomType];
+      if (!room) return;
+
+      currentRoom = room;
+
+      // Actualizar contenido
+      document.getElementById('room-modal-title').textContent = room.title;
+      document.getElementById('room-modal-subtitle').textContent = room.subtitle;
+      document.getElementById('room-modal-size').textContent = room.size;
+      document.getElementById('room-modal-capacity').textContent = room.capacity;
+      document.getElementById('room-modal-bed').textContent = room.bed;
+      document.getElementById('room-modal-price').textContent = room.price;
+      
+      // Actualizar ícono de capacidad
+      const capacityIcon = document.getElementById('room-modal-capacity-icon');
+      capacityIcon.className = `fa-solid ${room.capacityIcon} text-lg mb-2 block`;
+      capacityIcon.style.color = '#E90065';
+
+      // Actualizar imagen principal
+      mainImg.src = room.images[0].src;
+      mainImg.alt = room.images[0].alt;
+
+      // Generar miniaturas
+      thumbnailsContainer.innerHTML = '';
+      room.images.forEach((img, index) => {
+        const thumb = document.createElement('button');
+        thumb.className = `room-modal-gallery-thumb flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${index === 0 ? 'border-pink-meson' : 'border-stone-200'}`;
+        thumb.innerHTML = `<img src="${img.src}" alt="${img.alt}" class="w-full h-full object-cover" />`;
+        thumb.setAttribute('aria-label', `Ver imagen ${index + 1}: ${img.alt}`);
+        
+        if (index === 0) {
+          thumb.classList.add('active');
+        }
+
+        thumb.addEventListener('click', () => {
+          mainImg.src = img.src;
+          mainImg.alt = img.alt;
+          
+          // Actualizar clase active
+          thumbnailsContainer.querySelectorAll('.room-modal-gallery-thumb').forEach(t => {
+            t.classList.remove('active', 'border-pink-meson');
+            t.classList.add('border-stone-200');
+          });
+          thumb.classList.add('active', 'border-pink-meson');
+          thumb.classList.remove('border-stone-200');
+        });
+
+        thumbnailsContainer.appendChild(thumb);
+      });
+
+      // Generar amenidades
+      const amenitiesContainer = document.getElementById('room-modal-amenities');
+      amenitiesContainer.innerHTML = '';
+      room.amenities.forEach(amenity => {
+        const amenityEl = document.createElement('div');
+        amenityEl.className = 'flex items-center gap-3';
+        amenityEl.innerHTML = `
+          <i class="fa-solid ${amenity.icon} text-sm" style="color:#E90065; width:20px;"></i>
+          <span class="font-sans text-sm text-brown-body">${amenity.text}</span>
+        `;
+        amenitiesContainer.appendChild(amenityEl);
+      });
+
+      // Mostrar modal
+      modal.classList.add('active');
+      document.body.classList.add('modal-open');
+
+      // Configurar focus trap
+      const focusableElements = modal.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      firstFocusableElement = focusableElements[0];
+      lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+      // Focus en el botón de cerrar
+      setTimeout(() => closeBtn.focus(), 100);
+    };
+
+    // Función para cerrar modal
+    const closeRoomModal = () => {
+      modal.classList.add('closing');
+      
+      setTimeout(() => {
+        modal.classList.remove('active', 'closing');
+        document.body.classList.remove('modal-open');
+        currentRoom = null;
+      }, 250);
+    };
+
+    // Event listeners para abrir modal
+    document.querySelectorAll('[data-room]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        const roomType = card.getAttribute('data-room');
+        openRoomModal(roomType);
+      });
+    });
+
+    // Event listeners para cerrar modal
+    closeBtn.addEventListener('click', closeRoomModal);
+    closeBtnBottom.addEventListener('click', closeRoomModal);
+    modalBackdrop.addEventListener('click', closeRoomModal);
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeRoomModal();
+      }
+    });
+
+    // Focus trap
+    modal.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !modal.classList.contains('active')) return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstFocusableElement) {
+          e.preventDefault();
+          lastFocusableElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastFocusableElement) {
+          e.preventDefault();
+          firstFocusableElement.focus();
+        }
+      }
+    });
+
     // ── Header scrolled state ──
     const header = document.getElementById('main-header');
     window.addEventListener('scroll', () => {
