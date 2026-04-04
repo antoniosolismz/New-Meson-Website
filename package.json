@@ -1,0 +1,23 @@
+{
+  "name": "new-meson-website",
+  "version": "1.0.0",
+  "description": "![Mesón Santa Rosa](https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoniosolismz/New-Meson-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antoniosolismz/New-Meson-Website/issues"
+  },
+  "homepage": "https://github.com/antoniosolismz/New-Meson-Website#readme",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}
