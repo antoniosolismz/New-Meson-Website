@@ -1,0 +1,46 @@
+# Git files
+.git/
+.gitignore
+
+# Development and configuration
+.opencode/
+.codenomad/
+node_modules/
+package.json
+package-lock.json
+
+# Development scripts
+optimize-images.js
+update-html.js
+
+# Test and performance reports
+lighthouse-reports/
+PERFORMANCE_TEST_RESULTS.md
+
+# Development assets (originals, not optimized)
+assets/originals/
+
+# Screenshots and documentation
+page-screenshot*.png
+README.md
+AGENTS.md
+
+# Docker files (don't copy into image)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
