@@ -28,8 +28,8 @@ COPY favicon.svg /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
 
-# Copy assets directory
-COPY assets/ /usr/share/nginx/html/assets/
+# Copy optimized assets directory
+COPY assets/optimized /usr/share/nginx/html/assets/optimized
 
 # Set proper permissions
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
