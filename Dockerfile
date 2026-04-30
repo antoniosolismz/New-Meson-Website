@@ -35,10 +35,6 @@ COPY assets/optimized /usr/share/nginx/html/assets/optimized
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 
-# This is causing conflicts with selecting the port to expose in portainer. Commenting out as a test for now
-# Expose port 80
-# EXPOSE 80
-
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
