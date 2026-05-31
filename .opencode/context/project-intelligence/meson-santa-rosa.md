@@ -63,8 +63,8 @@ A complete, responsive landing page for **Mesón Santa Rosa**, a boutique hotel 
    - Filigree watermark background
 
 4. **Rooms Section**
-   - Standard Room ($55/night)
-   - Double Room ($70/night)
+   - Standard Room ($1,170/night)
+   - Double Room ($1,270/night)
    - Links to Expedia, Hotels.com
 
 5. **Restaurant & Bar**
