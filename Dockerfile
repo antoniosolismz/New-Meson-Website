@@ -24,6 +24,7 @@ COPY 404.html /usr/share/nginx/html/
 COPY privacidad.html /usr/share/nginx/html/
 COPY terminos.html /usr/share/nginx/html/
 COPY logo_meson_estampa.png /usr/share/nginx/html/
+COPY logo_meson_estampa_blanco.png /usr/share/nginx/html/
 COPY favicon.svg /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
