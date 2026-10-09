@@ -4,13 +4,7 @@
 User-agent: *
 Allow: /
 
-# Archivos sitemap
+# No hay rutas internas que ocultar: /privacidad.html y /terminos.html se indexan
+# a proposito y van declaradas en el sitemap.
+
 Sitemap: https://mesonsantarosa.com.mx/sitemap.xml
-
-# Rutas no indexables (opcional)
-Disallow: /cgi-bin/
-Disallow: /??
-
-# Archivos sensibles
-Disallow: /*.json$
-Disallow: /*.log$

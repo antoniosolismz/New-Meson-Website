@@ -15,19 +15,20 @@
   <meta property="og:url" content="https://mesonsantarosa.com.mx/" />
   <meta property="og:title" content="Mesón Santa Rosa — Hotel Boutique en Tlaxcala" />
   <meta property="og:description" content="Un retiro boutique en el corazón histórico de Tlaxcala, frente al Ex Convento de San Francisco, Patrimonio de la Humanidad UNESCO" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="og:image" content="https://mesonsantarosa.com.mx/assets/optimized/og-meson-1200x630.jpg" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://mesonsantarosa.com.mx/" />
   <meta property="twitter:title" content="Mesón Santa Rosa — Hotel Boutique en Tlaxcala" />
   <meta property="twitter:description" content="Un retiro boutique en el corazón histórico de Tlaxcala, frente al Ex Convento de San Francisco, Patrimonio de la Humanidad UNESCO" />
-  <meta property="twitter:image" content="https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80" />
+  <meta property="twitter:image" content="https://mesonsantarosa.com.mx/assets/optimized/og-meson-1200x630.jpg" />
 
   <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
   <!-- Font Awesome (defer loading) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
@@ -67,43 +68,95 @@
   <!-- JSON-LD Structured Data for Hotel -->
   <script type="application/ld+json">
   {
+
     "@context": "https://schema.org",
+
     "@type": "Hotel",
+
     "name": "Mesón Santa Rosa",
+
     "description": "Hotel boutique y restaurante en el corazón histórico de Tlaxcala",
+
     "url": "https://mesonsantarosa.com.mx/",
-    "telephone": "+52 246 123 4567",
+
+    "telephone": "+52 246 116 6545",
+
     "address": {
+
       "@type": "PostalAddress",
-      "streetAddress": "Calle Principal s/n, Centro Histórico",
+
+      "streetAddress": "Av. Independencia 27, Centro",
+
       "addressLocality": "Tlaxcala",
+
       "addressRegion": "Tlaxcala",
+
+      "postalCode": "90000",
+
       "addressCountry": "MX"
+
     },
+
     "geo": {
+
       "@type": "GeoCoordinates",
-      "latitude": "19.3191",
-      "longitude": "-98.2375"
+
+      "latitude": 19.313776,
+
+      "longitude": -98.239632
+
     },
-    "starRating": {
-      "@type": "Rating",
-      "ratingValue": "4.5"
-    },
+
     "priceRange": "$$",
-    "image": "https://images.unsplash.com/photo-1523699289804-55347c09047d?auto=format&fit=crop&w=1200&q=80",
-    "amenityFeature": [
-      {"@type": "LocationFeatureSpecification", "name": "WiFi gratis", "value": true},
-      {"@type": "LocationFeatureSpecification", "name": "Restaurante", "value": true},
-      {"@type": "LocationFeatureSpecification", "name": "Terraza", "value": true}
+
+    "image": [
+
+      "https://mesonsantarosa.com.mx/assets/optimized/og-meson-1200x630.jpg",
+
+      "https://mesonsantarosa.com.mx/assets/optimized/hero-meson-1600.jpg"
+
     ],
-    "openingHoursSpecification": [
+
+    "amenityFeature": [
+
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "08:00",
-        "closes": "15:00"
+
+        "@type": "LocationFeatureSpecification",
+
+        "name": "WiFi gratis",
+
+        "value": true
+
+      },
+
+      {
+
+        "@type": "LocationFeatureSpecification",
+
+        "name": "Restaurante",
+
+        "value": true
+
+      },
+
+      {
+
+        "@type": "LocationFeatureSpecification",
+
+        "name": "Terraza",
+
+        "value": true
+
       }
-    ]
+
+    ],
+
+    "email": "mesonsantarosa@outlook.com",
+
+    "checkinTime": "15:00",
+
+    "checkoutTime": "12:00"
+
   }
   </script>
 
@@ -131,6 +184,9 @@
       --brown-b:     #5C4A42;
       --cream:       #FDFBF7;
     }
+    /* <picture> no debe crear una caja propia: el <img> sigue siendo el hijo del layout */
+    picture { display: contents; }
+
 
     body {
       font-family: 'Inter', sans-serif !important;
@@ -621,13 +677,17 @@
 
     <!-- Imagen de fondo del hero -->
     <div class="absolute inset-0">
-      <img
-        src="/assets/optimized/hero-meson.jpg"
-        alt="Patio colonial mexicano con arcos de piedra y fuente central"
-        class="w-full h-full object-cover object-center"
-        fetchpriority="high"
-        decoding="async"
-      />
+      <picture>
+        <source type="image/avif" srcset="/assets/optimized/hero-meson-640.avif 640w, /assets/optimized/hero-meson-1024.avif 1024w, /assets/optimized/hero-meson-1600.avif 1600w, /assets/optimized/hero-meson-1920.avif 1920w" sizes="100vw" />
+        <source type="image/webp" srcset="/assets/optimized/hero-meson-640.webp 640w, /assets/optimized/hero-meson-1024.webp 1024w, /assets/optimized/hero-meson-1600.webp 1600w, /assets/optimized/hero-meson-1920.webp 1920w" sizes="100vw" />
+        <img
+          src="/assets/optimized/hero-meson.jpg"
+          alt="Patio colonial mexicano con arcos de piedra y fuente central"
+          class="w-full h-full object-cover object-center"
+          fetchpriority="high"
+          decoding="async" width="1920" height="1081"
+        />
+      </picture>
       <div class="hero-overlay absolute inset-0"></div>
     </div>
 
@@ -789,7 +849,7 @@
           Nuestro Hotel
         </span>
         <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading leading-tight mb-4">
-          Bienvenido al Mesón<br class="hidden sm:block"/>Santa Rosa
+          Bienvenido al Mesón<br class="hidden sm:block"/> Santa Rosa
         </h2>
 
         <div class="section-divider">
@@ -820,12 +880,16 @@
 
           <!-- Imagen del desayuno -->
           <div class="gallery-img-wrap mx-6 my-4 rounded-xl overflow-hidden" style="height:180px;">
-            <img
-              src="/assets/optimized/desayuno-feature.JPEG"
-              alt="Desayuno mexicano auténtico con huevos y tortillas"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/desayuno-feature-640.avif" />
+              <source type="image/webp" srcset="/assets/optimized/desayuno-feature-640.webp" />
+              <img
+                src="/assets/optimized/desayuno-feature.JPEG"
+                alt="Desayuno mexicano auténtico con huevos y tortillas"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1440" height="1920"
+              />
+            </picture>
           </div>
 
           <div class="px-6 pb-6">
@@ -895,12 +959,16 @@
 
           <!-- Imagen de sitio histórico -->
           <div class="gallery-img-wrap mx-6 my-4 rounded-xl overflow-hidden" style="height:180px;">
-            <img
-              src="/assets/optimized/tlaxcala-convento.jpg"
-              alt="Iglesia colonial en Tlaxcala, México"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/tlaxcala-convento-640.avif" />
+              <source type="image/webp" srcset="/assets/optimized/tlaxcala-convento-640.webp" />
+              <img
+                src="/assets/optimized/tlaxcala-convento.jpg"
+                alt="Iglesia colonial en Tlaxcala, México"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1920" height="1440"
+              />
+            </picture>
           </div>
 
           <div class="px-6 pb-6">
@@ -946,12 +1014,16 @@
         <!-- Habitación Estándar -->
         <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card cursor-pointer" data-room="estandar">
           <div class="gallery-img-wrap" style="height:260px;">
-            <img
-              src="/assets/optimized/habitacion-estandar.jpg"
-              alt="Habitación estándar del Mesón Santa Rosa"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/habitacion-estandar-800.avif" />
+              <source type="image/webp" srcset="/assets/optimized/habitacion-estandar-800.webp" />
+              <img
+                src="/assets/optimized/habitacion-estandar.jpg"
+                alt="Habitación estándar del Mesón Santa Rosa"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1920" height="1081"
+              />
+            </picture>
           </div>
           <div class="p-6">
             <div class="mb-3">
@@ -1007,12 +1079,16 @@
         <!-- Habitación King Size -->
         <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card cursor-pointer" data-room="king">
           <div class="gallery-img-wrap" style="height:260px;">
-            <img
-              src="/assets/optimized/habitacion-king.jpg"
-              alt="Habitación King Size del Mesón Santa Rosa"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/habitacion-king-800.avif" />
+              <source type="image/webp" srcset="/assets/optimized/habitacion-king-800.webp" />
+              <img
+                src="/assets/optimized/habitacion-king.jpg"
+                alt="Habitación King Size del Mesón Santa Rosa"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1920" height="1081"
+              />
+            </picture>
           </div>
           <div class="p-6">
             <div class="mb-3">
@@ -1071,12 +1147,16 @@
         <!-- Habitación Doble -->
         <div class="feature-card rounded-2xl overflow-hidden border border-stone-100 shadow-card cursor-pointer" data-room="doble">
           <div class="gallery-img-wrap" style="height:260px;">
-            <img
-              src="/assets/optimized/habitacion-doble.jpg"
-              alt="Habitación doble del Mesón Santa Rosa"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/habitacion-doble-800.avif" />
+              <source type="image/webp" srcset="/assets/optimized/habitacion-doble-800.webp" />
+              <img
+                src="/assets/optimized/habitacion-doble.jpg"
+                alt="Habitación doble del Mesón Santa Rosa"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1920" height="1081"
+              />
+            </picture>
           </div>
           <div class="p-6">
             <div class="mb-3">
@@ -1166,7 +1246,7 @@
             Gastronomía
           </span>
           <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading leading-tight mb-4">
-            Restaurante &<br/>Bar Mesón
+            Restaurante &<br/> Bar Mesón
           </h2>
           <div class="section-divider justify-start">
             <span class="w-12"></span>
@@ -1206,36 +1286,52 @@
         <!-- Galería de alimentos 2×2 -->
         <div class="grid grid-cols-2 gap-4 fade-in-up">
           <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
-            <img
-              src="/assets/optimized/Enchiladas.JPEG"
-              alt="Enchiladas tlaxcaltecas"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/Enchiladas-640.avif" />
+              <source type="image/webp" srcset="/assets/optimized/Enchiladas-640.webp" />
+              <img
+                src="/assets/optimized/Enchiladas.JPEG"
+                alt="Enchiladas tlaxcaltecas"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1440" height="1920"
+              />
+            </picture>
           </div>
           <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
-            <img
-              src="/assets/optimized/fruta-y-cafe.JPEG"
-              alt="Desayuno gourmet con hotcakes"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/fruta-y-cafe-640.avif" />
+              <source type="image/webp" srcset="/assets/optimized/fruta-y-cafe-640.webp" />
+              <img
+                src="/assets/optimized/fruta-y-cafe.JPEG"
+                alt="Desayuno gourmet con hotcakes"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1440" height="1920"
+              />
+            </picture>
           </div>
           <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
-            <img
-              src="/assets/optimized/Bebidas.JPEG"
-              alt="Chilaquiles y café mexicano"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/Bebidas-640.avif" />
+              <source type="image/webp" srcset="/assets/optimized/Bebidas-640.webp" />
+              <img
+                src="/assets/optimized/Bebidas.JPEG"
+                alt="Chilaquiles y café mexicano"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1440" height="1920"
+              />
+            </picture>
           </div>
           <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:200px;">
-            <img
-              src="/assets/optimized/Enchiladas-con-huevo.JPEG"
-              alt="Café artesanal del Mesón"
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/Enchiladas-con-huevo-640.avif" />
+              <source type="image/webp" srcset="/assets/optimized/Enchiladas-con-huevo-640.webp" />
+              <img
+                src="/assets/optimized/Enchiladas-con-huevo.JPEG"
+                alt="Café artesanal del Mesón"
+                class="w-full h-full object-cover"
+                loading="lazy" width="1440" height="1920"
+              />
+            </picture>
           </div>
         </div>
 
@@ -1256,12 +1352,16 @@
         <div class="order-2 lg:order-1 fade-in-up">
           <div class="relative">
             <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-float" style="height:440px;">
-              <img
-                src="/assets/optimized/evento.jpg"
-                alt="Terraza del Mesón Santa Rosa ideal para eventos privados"
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
+              <picture>
+                <source type="image/avif" srcset="/assets/optimized/evento-1200.avif" />
+                <source type="image/webp" srcset="/assets/optimized/evento-1200.webp" />
+                <img
+                  src="/assets/optimized/evento.jpg"
+                  alt="Terraza del Mesón Santa Rosa ideal para eventos privados"
+                  class="w-full h-full object-cover"
+                  loading="lazy" width="1124" height="1406"
+                />
+              </picture>
             </div>
             <!-- Badge decorativo -->
             <div class="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-elegant p-5 border border-stone-100">
@@ -1284,7 +1384,7 @@
             Espacios para Eventos
           </span>
           <h2 class="font-serif text-4xl md:text-5xl font-bold text-brown-heading leading-tight mb-4">
-            Organiza tu<br/>Evento Especial
+            Organiza tu<br/> Evento Especial
           </h2>
           <div class="section-divider justify-start">
             <span class="w-12"></span>
@@ -1394,63 +1494,87 @@
 
         <!-- Grande: fila 1, columna 1-2 -->
         <div class="gallery-img-wrap col-span-2 rounded-2xl overflow-hidden shadow-card" style="height:280px;">
-          <img
-            src="/assets/optimized/lababo-king.jpg"
-            alt="Patio colonial con arcos de piedra"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/avif" srcset="/assets/optimized/lababo-king-1200.avif" />
+            <source type="image/webp" srcset="/assets/optimized/lababo-king-1200.webp" />
+            <img
+              src="/assets/optimized/lababo-king.jpg"
+              alt="Patio colonial con arcos de piedra"
+              class="w-full h-full object-cover"
+              loading="lazy" width="1920" height="1081"
+            />
+          </picture>
           <div class="gallery-caption">Patio Colonial</div>
         </div>
 
         <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:280px;">
-          <img
-            src="/assets/optimized/comedor-lateral.jpg"
-            alt="Habitación del hotel Mesón Santa Rosa"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/avif" srcset="/assets/optimized/comedor-lateral-640.avif" />
+            <source type="image/webp" srcset="/assets/optimized/comedor-lateral-640.webp" />
+            <img
+              src="/assets/optimized/comedor-lateral.jpg"
+              alt="Habitación del hotel Mesón Santa Rosa"
+              class="w-full h-full object-cover"
+              loading="lazy" width="1920" height="1081"
+            />
+          </picture>
           <div class="gallery-caption">Habitación Estándar</div>
         </div>
 
         <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:280px;">
-          <img
-            src="/assets/optimized/cafetera-habitacion.jpg"
-            alt="Desayuno en el Mesón Santa Rosa"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/avif" srcset="/assets/optimized/cafetera-habitacion-640.avif" />
+            <source type="image/webp" srcset="/assets/optimized/cafetera-habitacion-640.webp" />
+            <img
+              src="/assets/optimized/cafetera-habitacion.jpg"
+              alt="Desayuno en el Mesón Santa Rosa"
+              class="w-full h-full object-cover"
+              loading="lazy" width="1920" height="1081"
+            />
+          </picture>
           <div class="gallery-caption">Desayuno Gourmet</div>
         </div>
 
         <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:220px;">
-          <img
-            src="/assets/optimized/regadera.jpg"
-            alt="Platillo del restaurante Mesón"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/avif" srcset="/assets/optimized/regadera-640.avif" />
+            <source type="image/webp" srcset="/assets/optimized/regadera-640.webp" />
+            <img
+              src="/assets/optimized/regadera.jpg"
+              alt="Platillo del restaurante Mesón"
+              class="w-full h-full object-cover"
+              loading="lazy" width="1920" height="1081"
+            />
+          </picture>
           <div class="gallery-caption">Enchiladas Tlaxcaltecas</div>
         </div>
 
         <div class="gallery-img-wrap rounded-2xl overflow-hidden shadow-card" style="height:220px;">
-          <img
-            src="/assets/optimized/juegos.jpg"
-            alt="Vista al centro histórico de Tlaxcala"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/avif" srcset="/assets/optimized/juegos-640.avif" />
+            <source type="image/webp" srcset="/assets/optimized/juegos-640.webp" />
+            <img
+              src="/assets/optimized/juegos.jpg"
+              alt="Vista al centro histórico de Tlaxcala"
+              class="w-full h-full object-cover"
+              loading="lazy" width="1920" height="1081"
+            />
+          </picture>
           <div class="gallery-caption">Centro Histórico</div>
         </div>
 
         <!-- Grande: fila 2, columna 3-4 -->
         <div class="gallery-img-wrap col-span-2 rounded-2xl overflow-hidden shadow-card" style="height:220px;">
-          <img
-            src="/assets/optimized/entrada-interna.jpg"
-            alt="Terraza y jardín del Mesón Santa Rosa"
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
+          <picture>
+            <source type="image/avif" srcset="/assets/optimized/entrada-interna-1200.avif" />
+            <source type="image/webp" srcset="/assets/optimized/entrada-interna-1200.webp" />
+            <img
+              src="/assets/optimized/entrada-interna.jpg"
+              alt="Terraza y jardín del Mesón Santa Rosa"
+              class="w-full h-full object-cover"
+              loading="lazy" width="1920" height="1081"
+            />
+          </picture>
           <div class="gallery-caption">Terraza & Jardín</div>
         </div>
 
@@ -1641,9 +1765,9 @@
             </div>
             <div>
               <h4 class="font-serif font-semibold text-brown-heading mb-1">Correo electrónico</h4>
-              <a href="mailto:contacto@mesonsantarosa.com.mx"
+              <a href="mailto:mesonsantarosa@outlook.com"
                  class="font-sans text-sm text-brown-body hover:text-pink-meson transition-colors">
-                contacto@mesonsantarosa.com.mx
+                mesonsantarosa@outlook.com
               </a>
             </div>
           </div>
@@ -1669,12 +1793,16 @@
              target="_blank" rel="noopener noreferrer"
              class="block rounded-2xl overflow-hidden shadow-float border border-stone-100 group relative" style="height:420px;">
             <!-- Imagen estática del mapa -->
-            <img
-              src="/assets/optimized/fachada-2.jpg"
-              alt="Vista de la ubicación del Mesón Santa Rosa en el centro histórico de Tlaxcala"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
+            <picture>
+              <source type="image/avif" srcset="/assets/optimized/fachada-2-1200.avif" />
+              <source type="image/webp" srcset="/assets/optimized/fachada-2-1200.webp" />
+              <img
+                src="/assets/optimized/fachada-2.jpg"
+                alt="Vista de la ubicación del Mesón Santa Rosa en el centro histórico de Tlaxcala"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy" width="1920" height="1081"
+              />
+            </picture>
             <!-- Overlay con información -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
               <div class="bg-white rounded-xl p-4 shadow-lg">
@@ -1706,12 +1834,16 @@
   <!-- ╚══════════════════════════════════════════════════════╝ -->
   <section class="relative py-24 px-4 overflow-hidden">
     <div class="absolute inset-0">
-      <img
-        src="/assets/optimized/vista-lado-hotel.jpg"
-        alt="Vista nocturna del hotel boutique"
-        class="w-full h-full object-cover"
-        loading="lazy"
-      />
+      <picture>
+        <source type="image/avif" srcset="/assets/optimized/vista-lado-hotel-640.avif 640w, /assets/optimized/vista-lado-hotel-1024.avif 1024w, /assets/optimized/vista-lado-hotel-1600.avif 1600w" sizes="100vw" />
+        <source type="image/webp" srcset="/assets/optimized/vista-lado-hotel-640.webp 640w, /assets/optimized/vista-lado-hotel-1024.webp 1024w, /assets/optimized/vista-lado-hotel-1600.webp 1600w" sizes="100vw" />
+        <img
+          src="/assets/optimized/vista-lado-hotel.jpg"
+          alt="Vista nocturna del hotel boutique"
+          class="w-full h-full object-cover"
+          loading="lazy" width="1920" height="1081"
+        />
+      </picture>
       <div class="absolute inset-0" style="background:linear-gradient(135deg, rgba(30,10,5,0.82) 0%, rgba(73,35,20,0.75) 100%);"></div>
     </div>
 
@@ -1812,8 +1944,8 @@
             </div>
             <div class="flex items-center gap-2.5">
               <i class="fa-solid fa-envelope text-xs flex-shrink-0" style="color:#E90065;"></i>
-              <a href="mailto:contacto@mesonsantarosa.com.mx" class="font-sans text-sm text-white/70 hover:text-white transition-colors">
-                contacto@mesonsantarosa.com.mx
+              <a href="mailto:mesonsantarosa@outlook.com" class="font-sans text-sm text-white/70 hover:text-white transition-colors">
+                mesonsantarosa@outlook.com
               </a>
             </div>
           </div>
@@ -1879,7 +2011,7 @@
         <div class="room-modal-gallery-column relative bg-stone-50">
           <!-- Imagen principal -->
           <div class="room-modal-main-image-wrap relative">
-            <img id="room-modal-main-img" src="" alt="" class="w-full h-full object-cover" />
+            <img id="room-modal-main-img" alt="" class="w-full h-full object-cover" />
             
             <!-- Navigation arrows -->
             <button id="gallery-prev-btn" class="gallery-nav-btn prev" aria-label="Imagen anterior">
@@ -2141,6 +2273,8 @@
     const closeBtn = document.getElementById('room-modal-close');
     const closeBtnBottom = document.getElementById('room-modal-close-btn');
     const mainImg = document.getElementById('room-modal-main-img');
+    // Variantes ya redimensionadas en el servidor (ver assets/optimized/**)
+    const sizedSrc = (src, sufijo) => src.replace(/\.(jpe?g)$/i, sufijo + '.jpg');
     const thumbnailsContainer = document.getElementById('room-modal-thumbnails');
     const prevBtn = document.getElementById('gallery-prev-btn');
     const nextBtn = document.getElementById('gallery-next-btn');
@@ -2158,7 +2292,7 @@
       const img = currentRoom.images[index];
       
       // Actualizar imagen principal
-      mainImg.src = img.src;
+      mainImg.src = sizedSrc(img.src, '-w1200');
       mainImg.alt = img.alt;
       
       // Actualizar clase active en miniaturas
@@ -2220,7 +2354,7 @@
       capacityIcon.style.color = '#E90065';
 
       // Actualizar imagen principal
-      mainImg.src = room.images[0].src;
+      mainImg.src = sizedSrc(room.images[0].src, '-w1200');
       mainImg.alt = room.images[0].alt;
 
       // Generar miniaturas
@@ -2228,7 +2362,7 @@
       room.images.forEach((img, index) => {
         const thumb = document.createElement('button');
         thumb.className = `room-modal-gallery-thumb flex-shrink-0 rounded-lg overflow-hidden border-2 ${index === 0 ? 'border-pink-meson' : 'border-stone-200'}`;
-        thumb.innerHTML = `<img src="${img.src}" alt="${img.alt}" class="w-full h-full object-cover" />`;
+        thumb.innerHTML = `<img src="${sizedSrc(img.src, '-t160')}" alt="${img.alt}" class="w-full h-full object-cover" loading="lazy" width="160" height="160" />`;
         thumb.setAttribute('aria-label', `Ver imagen ${index + 1}: ${img.alt}`);
         
         if (index === 0) {
