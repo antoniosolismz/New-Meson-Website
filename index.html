@@ -27,7 +27,6 @@
   <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
   <!-- Font Awesome (defer loading) -->
@@ -37,33 +36,10 @@
   <!-- Google Fonts with display=swap -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS (JIT via CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'pink-meson':    '#E90065',
-            'brown-heading': '#4A3525',
-            'brown-body':    '#5C4A42',
-            'cream-bg':      '#FDFBF7',
-            'cream-hover':   '#F5EFE6',
-          },
-          fontFamily: {
-            serif:  ['"Playfair Display"', 'Georgia', 'serif'],
-            sans:   ['"Inter"', 'sans-serif'],
-          },
-          boxShadow: {
-            'elegant': '0 8px 32px rgba(74, 53, 37, 0.12)',
-            'card':    '0 4px 20px rgba(74, 53, 37, 0.08)',
-            'float':   '0 16px 48px rgba(74, 53, 37, 0.18)',
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Tailwind: CSS precompilado en assets/tailwind.css.
+       Antes se cargaba el CDN, que bajaba ~126 KB de JS bloqueante y generaba el
+       CSS en el navegador. Para regenerarlo: ver el skill meson-santa-rosa-site. -->
+  <link rel="stylesheet" href="assets/tailwind.css" />
 
   <!-- JSON-LD Structured Data for Hotel -->
   <script type="application/ld+json">
@@ -214,6 +190,8 @@
     ::-webkit-scrollbar-thumb { background: #d4a5a5; border-radius: 9999px; }
 
     /* ── Smooth scroll ── */
+    /* El desplazamiento de las anclas lo hace el JS con la compensacion del
+       header fijo (ver "Smooth scroll para anclas" mas abajo). */
     html {
       scroll-behavior: smooth;
     }
@@ -658,7 +636,7 @@
           <a href="#galeria"      class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Galería</a>
           <a href="#contacto"     class="px-4 py-3 text-sm font-medium text-brown-body hover:bg-cream-hover font-sans rounded-lg transition-colors">Contacto</a>
           <div class="px-4 pt-2">
-            <a href="#reservar" class="btn-pink w-full flex items-center justify-center gap-2 px-5 py-3 rounded-md text-sm font-semibold font-sans">
+            <a href="#contacto" class="btn-pink w-full flex items-center justify-center gap-2 px-5 py-3 rounded-md text-sm font-semibold font-sans">
               <i class="fa-solid fa-calendar-check text-xs"></i>
               Reservar Ahora
             </a>
@@ -1984,7 +1962,7 @@
 
   <!-- Mobile: Sticky Book Now Button -->
   <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 p-3 lg:hidden z-40 md:hidden">
-    <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+    <a href="#contacto" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
       <i class="fa-solid fa-calendar-check text-xs"></i>
       Reservar Ahora
     </a>
@@ -2079,7 +2057,7 @@
 
           <!-- CTAs -->
           <div class="space-y-3">
-            <a href="#reservar" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
+            <a href="#contacto" class="btn-pink w-full text-center py-3 rounded-lg text-sm font-semibold font-sans flex items-center justify-center gap-2">
               <i class="fa-solid fa-calendar-check text-xs"></i>
               Reservar Ahora
             </a>
@@ -2431,6 +2409,21 @@
     closeBtn.addEventListener('click', closeRoomModal);
     closeBtnBottom.addEventListener('click', closeRoomModal);
     modalBackdrop.addEventListener('click', closeRoomModal);
+
+    // El CTA de reserva del modal manda a #contacto. Se cierra el modal primero:
+    // mientras body tiene overflow:hidden el desplazamiento no ocurre, y el
+    // usuario aterrizaria en contacto con la capa encima, como si no hubiera hecho nada.
+    modal.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        closeRoomModal();
+        const destino = document.querySelector(link.getAttribute('href'));
+        if (!destino) return;
+        setTimeout(() => {
+          const top = destino.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 16;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 300);
+      });
+    });
 
     // Cerrar con ESC y navegar con flechas
     document.addEventListener('keydown', (e) => {

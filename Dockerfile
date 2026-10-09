@@ -32,6 +32,9 @@ COPY sitemap.xml /usr/share/nginx/html/
 # Copy optimized assets directory
 COPY assets/optimized /usr/share/nginx/html/assets/optimized
 
+# Tailwind precompilado (sustituye al CDN; se regenera con el skill del sitio)
+COPY assets/tailwind.css /usr/share/nginx/html/assets/tailwind.css
+
 # Set proper permissions
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html

@@ -17,26 +17,10 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'pink-meson': '#E90065',
-            'brown-heading': '#4A3525',
-            'brown-body': '#5C4A42',
-            'cream-bg': '#FDFBF7',
-          },
-          fontFamily: {
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans: ['"Inter"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Tailwind: CSS precompilado en assets/tailwind.css.
+       Antes se cargaba el CDN, que bajaba ~126 KB de JS bloqueante y generaba el
+       CSS en el navegador. Para regenerarlo: ver el skill meson-santa-rosa-site. -->
+  <link rel="stylesheet" href="assets/tailwind.css" />
 
   <style>
     :root {
